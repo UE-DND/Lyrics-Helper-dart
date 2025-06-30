@@ -14,7 +14,7 @@ class MusixmatchSearcher implements ISearcher {
   String get displayName => "Musixmatch";
 
   @override
-  Searchers get searcherType => Searchers.Musixmatch;
+  Searchers get searcherType => Searchers.musixmatch;
 
   @override
   Future<ISearchResult?> searchForResult(ITrackMetadata track) async {

@@ -13,7 +13,7 @@ class KugouSearcher extends Searcher implements ISearcher {
   String get displayName => "Kugou Music";
 
   @override
-  Searchers get searcherType => Searchers.Kugou;
+  Searchers get searcherType => Searchers.kugou;
 
   @override
   Future<List<ISearchResult>?> searchForResultsByString(

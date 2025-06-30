@@ -51,7 +51,7 @@ class Yrc {
               list[i].text[0] == '.' ||
               list[i].text[0] == '?' ||
               list[i].text[0] == '!' ||
-              list[i].text[0] == '\"')) {
+              list[i].text[0] == '"')) {
         final prevSyllable = list[i - 1];
         if (prevSyllable is SyllableInfo) {
           prevSyllable.text += list[i].text;

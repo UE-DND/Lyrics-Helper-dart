@@ -100,7 +100,7 @@ Future<void> searchDemo() async {
 
   final result = await SearchHelper.search(
     meta,
-    searchers.Searchers.Netease,
+    searchers.Searchers.netease,
     minimumMatch: CompareMatchType.medium,
   );
 

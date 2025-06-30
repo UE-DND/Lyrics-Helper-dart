@@ -2,4 +2,11 @@ include: package:lints/recommended.yaml
 
 analyzer:
   exclude:
-    - '**/*.g.dart' 
+    - '**/*.g.dart'
+
+linter:
+  rules:
+    constant_identifier_names: false
+    curly_braces_in_flow_control_structures: false
+    prefer_interpolation_to_compose_strings: false
+    unnecessary_getters_setters: false 

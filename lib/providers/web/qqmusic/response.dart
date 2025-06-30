@@ -170,60 +170,54 @@ class LyricResult {
 @JsonSerializable(createToJson: false)
 class MusicFcgApiAlternativeResult {
   final int? code;
-  final _SearchCgiService? search;
+  final SearchCgiService? search;
   MusicFcgApiAlternativeResult({this.code, this.search});
   factory MusicFcgApiAlternativeResult.fromJson(Map<String, dynamic> json) =>
       MusicFcgApiAlternativeResult(
         code: json['code'] as int?,
         search: json['music.search.SearchCgiService'] != null
-            ? _SearchCgiService.fromJson(json['music.search.SearchCgiService'])
+            ? SearchCgiService.fromJson(json['music.search.SearchCgiService'])
             : null,
       );
 }
 
 @JsonSerializable(createToJson: false)
-class _SearchCgiService {
-  final _SearchDataBody? data;
-  _SearchCgiService({this.data});
-  factory _SearchCgiService.fromJson(Map<String, dynamic> json) =>
-      _SearchCgiService(
-        data: json['data'] != null
-            ? _SearchDataBody.fromJson(json['data'])
-            : null,
+class SearchCgiService {
+  final SearchDataBody? data;
+  SearchCgiService({this.data});
+  factory SearchCgiService.fromJson(Map<String, dynamic> json) =>
+      SearchCgiService(
+        data:
+            json['data'] != null ? SearchDataBody.fromJson(json['data']) : null,
       );
 }
 
 @JsonSerializable(createToJson: false)
-class _SearchDataBody {
-  final _SearchSongBody? body;
-  _SearchDataBody({this.body});
-  factory _SearchDataBody.fromJson(Map<String, dynamic> json) =>
-      _SearchDataBody(
-        body: json['body'] != null
-            ? _SearchSongBody.fromJson(json['body'])
-            : null,
+class SearchDataBody {
+  final SearchSongBody? body;
+  SearchDataBody({this.body});
+  factory SearchDataBody.fromJson(Map<String, dynamic> json) => SearchDataBody(
+        body:
+            json['body'] != null ? SearchSongBody.fromJson(json['body']) : null,
       );
 }
 
 @JsonSerializable(createToJson: false)
-class _SearchSongBody {
+class SearchSongBody {
   @JsonKey(name: 'Song')
-  final _SearchSongList? song;
-  _SearchSongBody({this.song});
-  factory _SearchSongBody.fromJson(Map<String, dynamic> json) =>
-      _SearchSongBody(
-        song: json['Song'] != null
-            ? _SearchSongList.fromJson(json['Song'])
-            : null,
+  final SearchSongList? song;
+  SearchSongBody({this.song});
+  factory SearchSongBody.fromJson(Map<String, dynamic> json) => SearchSongBody(
+        song:
+            json['Song'] != null ? SearchSongList.fromJson(json['Song']) : null,
       );
 }
 
 @JsonSerializable(createToJson: false)
-class _SearchSongList {
+class SearchSongList {
   final List<Song>? list;
-  _SearchSongList({this.list});
-  factory _SearchSongList.fromJson(Map<String, dynamic> json) =>
-      _SearchSongList(
+  SearchSongList({this.list});
+  factory SearchSongList.fromJson(Map<String, dynamic> json) => SearchSongList(
         list: (json['list'] as List?)?.map((e) => Song.fromJson(e)).toList(),
       );
 }

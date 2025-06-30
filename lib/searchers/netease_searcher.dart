@@ -15,7 +15,7 @@ class NeteaseSearcher extends Searcher implements ISearcher {
   String get displayName => "Netease Cloud Music";
 
   @override
-  Searchers get searcherType => Searchers.Netease;
+  Searchers get searcherType => Searchers.netease;
 
   bool _useNewSearchFirst = false;
 

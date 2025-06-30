@@ -4,8 +4,8 @@ import 'dart:typed_data';
 ///
 /// 该类提供了与原始 C# 版本兼容的 Triple DES 实现
 class DESHelper {
-  static const int ENCRYPT = 1;
-  static const int DECRYPT = 0;
+  static const int modeEncrypt = 1;
+  static const int modeDecrypt = 0;
 
   // S-box 查找表（从原始代码中直接移植）
   static final List<int> sbox1 = [
@@ -84,14 +84,14 @@ class DESHelper {
   /// [mode] 加密或解密模式
   static void tripleDESKeySetup(
       Uint8List key, List<List<List<int>>> schedule, int mode) {
-    if (mode == ENCRYPT) {
+    if (mode == modeEncrypt) {
       // 在实际使用中，我们使用 PointyCastle 库，这里只是保持接口一致
       _keySchedule(key.sublist(0, 8), schedule[0], mode);
-      _keySchedule(key.sublist(8, 16), schedule[1], DECRYPT);
+      _keySchedule(key.sublist(8, 16), schedule[1], modeDecrypt);
       _keySchedule(key.sublist(16), schedule[2], mode);
     } else {
       _keySchedule(key.sublist(0, 8), schedule[2], mode);
-      _keySchedule(key.sublist(8, 16), schedule[1], ENCRYPT);
+      _keySchedule(key.sublist(8, 16), schedule[1], modeEncrypt);
       _keySchedule(key.sublist(16), schedule[0], mode);
     }
   }
@@ -121,7 +121,7 @@ class DESHelper {
         3, (_) => List.generate(16, (_) => List.generate(6, (_) => 0)));
 
     // 设置密钥
-    tripleDESKeySetup(key, schedule, DECRYPT);
+    tripleDESKeySetup(key, schedule, modeDecrypt);
 
     // 解密过程（每次处理8字节块）
     Uint8List result = Uint8List(encryptedData.length);

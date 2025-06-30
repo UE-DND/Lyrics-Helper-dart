@@ -26,13 +26,13 @@ class Api extends BaseApi {
       String keyword, SearchTypeEnum searchType) async {
     int type;
     switch (searchType) {
-      case SearchTypeEnum.SONG_ID:
+      case SearchTypeEnum.songId:
         type = 0;
         break;
-      case SearchTypeEnum.ALBUM_ID:
+      case SearchTypeEnum.albumId:
         type = 2;
         break;
-      case SearchTypeEnum.PLAYLIST_ID:
+      case SearchTypeEnum.playlistId:
         type = 3;
         break;
     }
@@ -359,7 +359,7 @@ class Api extends BaseApi {
 }
 
 enum SearchTypeEnum {
-  SONG_ID,
-  ALBUM_ID,
-  PLAYLIST_ID,
+  songId,
+  albumId,
+  playlistId,
 }

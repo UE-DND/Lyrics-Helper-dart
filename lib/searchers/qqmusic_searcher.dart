@@ -14,7 +14,7 @@ class QQMusicSearcher extends Searcher implements ISearcher {
   String get displayName => "QQ Music";
 
   @override
-  Searchers get searcherType => Searchers.QQMusic;
+  Searchers get searcherType => Searchers.qqMusic;
 
   @override
   Future<List<ISearchResult>?> searchForResultsByString(
@@ -23,7 +23,7 @@ class QQMusicSearcher extends Searcher implements ISearcher {
 
     try {
       var result = await Providers.qqMusicApi
-          .search(searchString, SearchTypeEnum.SONG_ID);
+          .search(searchString, SearchTypeEnum.songId);
       var results = result?.req1?.data?.body?.song?.list;
       if (results == null) return null;
       for (var track in results) {

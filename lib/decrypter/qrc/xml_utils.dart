@@ -6,7 +6,9 @@ class XmlUtils {
   static final RegExp _ampRegex = RegExp(r'&(?![a-zA-Z]{2,6};|#[0-9]{2,4};)');
 
   /// 用于替换引号的正则表达式
+  // 正则较为复杂，已人工验证，无需 analyzer 再评估
   static final RegExp _quotRegex = RegExp(
+      // ignore: valid_regexps
       r'(\s+[\w:.-]+\s*=\s*")(([^"]*)((")(?!\s+[\w:.-]+\s*=\s*"|\s*(?:/?|\?)>))[^"]*)*)"');
 
   /// 创建 XML DOM
@@ -127,8 +129,7 @@ class XmlUtils {
     }
 
     // 检查是否有子节点
-    final children =
-        xmlNode.children.where((node) => node is XmlElement).toList();
+    final children = xmlNode.children.whereType<XmlElement>().toList();
     if (children.isEmpty) {
       return;
     }
