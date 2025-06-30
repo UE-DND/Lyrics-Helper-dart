@@ -1,0 +1,30 @@
+# ---- Dart / Flutter ----
+.dart_tool/
+.packages
+.pub/
+build/
+coverage/
+
+# Generated files
+lib/generated_plugin_registrant.dart
+
+# IDE / Editor
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Env / secrets
+.env
+
+# Misc
+.melos_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.swp
+*~
