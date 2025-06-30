@@ -14,9 +14,13 @@ class SpotifyColorLyrics {
   @JsonKey(name: 'hasVocalRemoval')
   bool hasVocalRemoval;
 
-  SpotifyColorLyrics({required this.lyrics, required this.colors, required this.hasVocalRemoval});
+  SpotifyColorLyrics(
+      {required this.lyrics,
+      required this.colors,
+      required this.hasVocalRemoval});
 
-  factory SpotifyColorLyrics.fromJson(Map<String, dynamic> json) => _$SpotifyColorLyricsFromJson(json);
+  factory SpotifyColorLyrics.fromJson(Map<String, dynamic> json) =>
+      _$SpotifyColorLyricsFromJson(json);
   Map<String, dynamic> toJson() => _$SpotifyColorLyricsToJson(this);
 }
 
@@ -69,7 +73,8 @@ class SpotifyLyrics {
     required this.fullscreenAction,
   });
 
-  factory SpotifyLyrics.fromJson(Map<String, dynamic> json) => _$SpotifyLyricsFromJson(json);
+  factory SpotifyLyrics.fromJson(Map<String, dynamic> json) =>
+      _$SpotifyLyricsFromJson(json);
   Map<String, dynamic> toJson() => _$SpotifyLyricsToJson(this);
 }
 
@@ -100,7 +105,8 @@ class SpotifyLyricsLine {
     required this.syllables,
   });
 
-  factory SpotifyLyricsLine.fromJson(Map<String, dynamic> json) => _$SpotifyLyricsLineFromJson(json);
+  factory SpotifyLyricsLine.fromJson(Map<String, dynamic> json) =>
+      _$SpotifyLyricsLineFromJson(json);
   Map<String, dynamic> toJson() => _$SpotifyLyricsLineToJson(this);
 }
 
@@ -117,16 +123,20 @@ class SyllableItem {
 
   @JsonKey(ignore: true)
   int get endTime => int.tryParse(endTimeMs) ?? 0;
-  
+
   @JsonKey(name: 'numChars')
   String numberChars;
 
   @JsonKey(ignore: true)
   int get charsCount => int.tryParse(numberChars) ?? 0;
 
-  SyllableItem({required this.startTimeMs, required this.endTimeMs, required this.numberChars});
+  SyllableItem(
+      {required this.startTimeMs,
+      required this.endTimeMs,
+      required this.numberChars});
 
-  factory SyllableItem.fromJson(Map<String, dynamic> json) => _$SyllableItemFromJson(json);
+  factory SyllableItem.fromJson(Map<String, dynamic> json) =>
+      _$SyllableItemFromJson(json);
   Map<String, dynamic> toJson() => _$SyllableItemToJson(this);
 }
 
@@ -141,9 +151,13 @@ class AlternativeItem {
   @JsonKey(name: 'isRtlLanguage')
   bool isRtlLanguage;
 
-  AlternativeItem({required this.language, required this.lines, required this.isRtlLanguage});
+  AlternativeItem(
+      {required this.language,
+      required this.lines,
+      required this.isRtlLanguage});
 
-  factory AlternativeItem.fromJson(Map<String, dynamic> json) => _$AlternativeItemFromJson(json);
+  factory AlternativeItem.fromJson(Map<String, dynamic> json) =>
+      _$AlternativeItemFromJson(json);
   Map<String, dynamic> toJson() => _$AlternativeItemToJson(this);
 }
 
@@ -158,8 +172,12 @@ class SpotifyColors {
   @JsonKey(name: 'highlightText')
   int highlightText;
 
-  SpotifyColors({required this.background, required this.text, required this.highlightText});
+  SpotifyColors(
+      {required this.background,
+      required this.text,
+      required this.highlightText});
 
-  factory SpotifyColors.fromJson(Map<String, dynamic> json) => _$SpotifyColorsFromJson(json);
+  factory SpotifyColors.fromJson(Map<String, dynamic> json) =>
+      _$SpotifyColorsFromJson(json);
   Map<String, dynamic> toJson() => _$SpotifyColorsToJson(this);
-} 
+}

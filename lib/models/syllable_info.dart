@@ -16,7 +16,7 @@ class SyllableInfo implements ISyllableInfo {
 
   @override
   int endTime = 0;
-  
+
   @override
   int get duration => endTime - startTime;
 
@@ -51,7 +51,7 @@ class FullSyllableInfo implements ISyllableInfo {
   int? _endTime;
   @override
   int get endTime => _endTime ??= subItems.last.endTime;
-  
+
   @override
   int get duration => endTime - startTime;
 
@@ -88,7 +88,8 @@ class SyllableHelper {
   }
 
   /// 从FullSyllableInfo列表获取完整文本
-  static String getTextFromFullSyllableInfoList(List<FullSyllableInfo> syllableList) {
+  static String getTextFromFullSyllableInfoList(
+      List<FullSyllableInfo> syllableList) {
     return syllableList.map((s) => s.text).join('');
   }
-} 
+}

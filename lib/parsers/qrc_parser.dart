@@ -21,7 +21,8 @@ class QrcParser {
         ..additionalInfo = (GeneralAdditionalInfo()..attributes = []));
 
     // 处理 Attributes
-    var offset = AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
+    var offset =
+        AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
 
     // 处理歌词行
     var lines = _parseLyrics(lyricsLines, offset);
@@ -69,4 +70,4 @@ class QrcParser {
 
     return SyllableLineInfo.fromSyllables(lyricItems);
   }
-} 
+}

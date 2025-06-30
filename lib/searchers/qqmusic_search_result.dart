@@ -10,7 +10,8 @@ class QQMusicSearchResult implements ISearchResult {
   @override
   ISearcher get searcher => QQMusicSearcher();
 
-  QQMusicSearchResult(String title, List<String> artists, String album, List<String>? albumArtists, int durationMs, String id, String mid) {
+  QQMusicSearchResult(String title, List<String> artists, String album,
+      List<String>? albumArtists, int durationMs, String id, String mid) {
     _title = title;
     _artists = artists;
     _album = album;
@@ -20,15 +21,15 @@ class QQMusicSearchResult implements ISearchResult {
     _mid = mid;
   }
 
-  QQMusicSearchResult.fromSong(Song song) : this(
-    song.title ?? "",
-    song.singer?.map((s) => s.name ?? "").toList() ?? [],
-    song.album?.title ?? "",
-    null,
-    song.interval * 1000,
-    song.id ?? "",
-    song.mid ?? ""
-  );
+  QQMusicSearchResult.fromSong(Song song)
+      : this(
+            song.title ?? "",
+            song.singer?.map((s) => s.name ?? "").toList() ?? [],
+            song.album?.title ?? "",
+            null,
+            song.interval * 1000,
+            song.id ?? "",
+            song.mid ?? "");
 
   late final String _title;
   @override
@@ -70,4 +71,4 @@ class QQMusicSearchResult implements ISearchResult {
   void setMatchType(CompareMatchType? matchType) {
     _matchType = matchType;
   }
-} 
+}

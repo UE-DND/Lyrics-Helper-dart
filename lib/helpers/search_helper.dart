@@ -34,9 +34,10 @@ class SearchHelper {
     if (searcherInstance == null) return null;
 
     if (minimumMatch != null) {
-      return searcherInstance.searchForResultWithMinimumMatch(track, minimumMatch);
+      return searcherInstance.searchForResultWithMinimumMatch(
+          track, minimumMatch);
     } else {
       return searcherInstance.searchForResult(track);
     }
   }
-} 
+}

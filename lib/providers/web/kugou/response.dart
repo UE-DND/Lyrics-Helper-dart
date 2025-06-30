@@ -16,7 +16,8 @@ class SearchSongResponse {
   @JsonKey(name: 'errcode')
   final int errorCode;
 
-  SearchSongResponse({required this.status, this.error, this.data, required this.errorCode});
+  SearchSongResponse(
+      {required this.status, this.error, this.data, required this.errorCode});
 
   factory SearchSongResponse.fromJson(Map<String, dynamic> json) =>
       _$SearchSongResponseFromJson(json);
@@ -79,7 +80,6 @@ class InfoItem {
   factory InfoItem.fromJson(Map<String, dynamic> json) =>
       _$InfoItemFromJson(json);
 }
-
 
 @JsonSerializable(createToJson: false)
 class SearchLyricsResponse {
@@ -237,4 +237,4 @@ class Candidate {
 
   factory Candidate.fromJson(Map<String, dynamic> json) =>
       _$CandidateFromJson(json);
-} 
+}

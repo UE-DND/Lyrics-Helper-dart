@@ -1,4 +1,3 @@
-
 import '../models/i_line_info.dart';
 import '../models/line_info.dart';
 import '../models/lyrics_data.dart';
@@ -38,7 +37,8 @@ class LrcParser {
             for (int j = 0; j < curTimestamps.length; j++) {
               if (curTimestamps[j] == -1) break;
               lines.add(LineInfo.fromTextAndStartTime(
-                  input.substring(curStateStartPosition + 1, i).trim(), curTimestamps[j] - offset));
+                  input.substring(curStateStartPosition + 1, i).trim(),
+                  curTimestamps[j] - offset));
             }
             if (input[i + 1] == '\n' || input[i + 1] == '\r') i++;
             currentTimestampPosition = 0;
@@ -58,7 +58,10 @@ class LrcParser {
         for (int j = 0; j < curTimestamps.length; j++) {
           if (curTimestamps[j] == -1) break;
           lines.add(LineInfo.fromTextAndStartTime(
-              input.substring(curStateStartPosition + 1, i - (lastCharacterIsLineBreak ? 1 : 0)).trim(),
+              input
+                  .substring(curStateStartPosition + 1,
+                      i - (lastCharacterIsLineBreak ? 1 : 0))
+                  .trim(),
               curTimestamps[j] - offset));
         }
         continue;
@@ -80,7 +83,8 @@ class LrcParser {
           }
           break;
         case _CurrentState.awaitingState:
-          if ('0'.codeUnitAt(0) <= curChar.codeUnitAt(0) && curChar.codeUnitAt(0) <= '9'.codeUnitAt(0)) {
+          if ('0'.codeUnitAt(0) <= curChar.codeUnitAt(0) &&
+              curChar.codeUnitAt(0) <= '9'.codeUnitAt(0)) {
             state = _CurrentState.timestamp;
             timeStampType = _TimeStampType.minutes;
             curStateStartPosition = i;
@@ -92,7 +96,8 @@ class LrcParser {
           }
           break;
         case _CurrentState.awaitingStateLyric:
-          if ('0'.codeUnitAt(0) <= curChar.codeUnitAt(0) && curChar.codeUnitAt(0) <= '9'.codeUnitAt(0)) {
+          if ('0'.codeUnitAt(0) <= curChar.codeUnitAt(0) &&
+              curChar.codeUnitAt(0) <= '9'.codeUnitAt(0)) {
             state = _CurrentState.timestamp;
             timeStampType = _TimeStampType.minutes;
             curStateStartPosition = i;
@@ -120,7 +125,8 @@ class LrcParser {
             } else {
               attributeValue = input.substring(curStateStartPosition, i);
             }
-            var attribute = MapEntry<String, String>(attributeName, attributeValue);
+            var attribute =
+                MapEntry<String, String>(attributeName, attributeValue);
             switch (attribute.key) {
               case "ar":
                 trackMetadata.artist = attribute.value;
@@ -141,19 +147,22 @@ class LrcParser {
             break;
           }
           if (attributeName == "offset") {
-            timeCalculationCache = timeCalculationCache * 10 + int.parse(curChar);
+            timeCalculationCache =
+                timeCalculationCache * 10 + int.parse(curChar);
             continue;
           }
           break;
         case _CurrentState.timestamp:
           if (timeStampType == _TimeStampType.milliseconds) {
             if (curChar != ']') {
-              timeCalculationCache = timeCalculationCache * 10 + int.parse(curChar);
+              timeCalculationCache =
+                  timeCalculationCache * 10 + int.parse(curChar);
               continue;
             } else {
               var pow = i - curStateStartPosition - 1;
               curTimestamp += timeCalculationCache * pow_10(3 - pow);
-              if (currentTimestampPosition + 1 >= curTimestamps.length) curTimestamps.add(-1);
+              if (currentTimestampPosition + 1 >= curTimestamps.length)
+                curTimestamps.add(-1);
               curTimestamps[currentTimestampPosition++] = curTimestamp;
               timeStampType = _TimeStampType.none;
               timeCalculationCache = 0;
@@ -181,8 +190,10 @@ class LrcParser {
               }
               throw ArgumentError("Invalid LRC format");
             case ']':
-              if (currentTimestampPosition + 1 >= curTimestamps.length) curTimestamps.add(-1);
-              curTimestamps[currentTimestampPosition++] = (curTimestamp + timeCalculationCache) * 1000;
+              if (currentTimestampPosition + 1 >= curTimestamps.length)
+                curTimestamps.add(-1);
+              curTimestamps[currentTimestampPosition++] =
+                  (curTimestamp + timeCalculationCache) * 1000;
               timeCalculationCache = 0;
               curStateStartPosition = i;
               curTimestamp = 0;
@@ -190,7 +201,8 @@ class LrcParser {
               timeStampType = _TimeStampType.none;
               continue;
             default:
-              timeCalculationCache = timeCalculationCache * 10 + int.parse(curChar);
+              timeCalculationCache =
+                  timeCalculationCache * 10 + int.parse(curChar);
               break;
           }
           break;
@@ -237,4 +249,4 @@ enum _TimeStampType {
   seconds,
   milliseconds,
   none,
-} 
+}

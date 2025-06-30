@@ -17,11 +17,13 @@ class QQMusicSearcher extends Searcher implements ISearcher {
   Searchers get searcherType => Searchers.QQMusic;
 
   @override
-  Future<List<ISearchResult>?> searchForResultsByString(String searchString) async {
+  Future<List<ISearchResult>?> searchForResultsByString(
+      String searchString) async {
     var search = <ISearchResult>[];
 
     try {
-      var result = await Providers.qqMusicApi.search(searchString, SearchTypeEnum.SONG_ID);
+      var result = await Providers.qqMusicApi
+          .search(searchString, SearchTypeEnum.SONG_ID);
       var results = result?.req1?.data?.body?.song?.list;
       if (results == null) return null;
       for (var track in results) {
@@ -40,4 +42,4 @@ class QQMusicSearcher extends Searcher implements ISearcher {
 
     return search;
   }
-} 
+}

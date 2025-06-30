@@ -63,7 +63,8 @@ abstract class BaseApi {
     return response.body;
   }
 
-  Future<String> postAsyncObject(String url, {required Map<String, Object> body}) async {
+  Future<String> postAsyncObject(String url,
+      {required Map<String, Object> body}) async {
     final headers = _getRequestHeaders();
     headers['Content-Type'] = 'application/json';
     final response = await httpClient.post(
@@ -118,4 +119,4 @@ class JsonUtils {
     }
     return jsonEncode(entity);
   }
-} 
+}

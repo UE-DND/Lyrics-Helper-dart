@@ -7,4 +7,4 @@ class Lrc {
     final pattern = RegExp(r'\[\d+:\d+\.\d+\](.+)');
     return pattern.hasMatch(input);
   }
-} 
+}

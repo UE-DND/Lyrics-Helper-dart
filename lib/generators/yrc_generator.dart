@@ -5,7 +5,7 @@ import '../models/syllable_info.dart';
 /// YRC 歌词生成器
 class YrcGenerator {
   /// 生成 YRC 字符串
-  /// 
+  ///
   /// [lyricsData] 用于生成的源歌词数据
   /// 返回生成出的 YRC 字符串
   static String generate(LyricsData lyricsData) {
@@ -13,12 +13,12 @@ class YrcGenerator {
 
     final sb = StringBuffer();
     final lines = lyricsData.lines!;
-    
+
     for (int i = 0; i < lines.length; i++) {
       if (lines[i] is SyllableLineInfo) {
         final line = lines[i] as SyllableLineInfo;
         _appendLine(sb, line);
-        
+
         if (line.subLine is SyllableLineInfo) {
           _appendLine(sb, line.subLine as SyllableLineInfo, true);
         }
@@ -29,7 +29,8 @@ class YrcGenerator {
   }
 
   // 添加一行歌词
-  static void _appendLine(StringBuffer sb, SyllableLineInfo line, [bool isSubLine = false]) {
+  static void _appendLine(StringBuffer sb, SyllableLineInfo line,
+      [bool isSubLine = false]) {
     // 添加行信息
     sb.write('[');
     sb.write(line.startTime);
@@ -47,7 +48,7 @@ class YrcGenerator {
         }
       }
     }
-    
+
     sb.writeln();
   }
 
@@ -60,4 +61,4 @@ class YrcGenerator {
     sb.write(',0)');
     sb.write(item.text);
   }
-} 
+}

@@ -16,7 +16,8 @@ class KugouSearcher extends Searcher implements ISearcher {
   Searchers get searcherType => Searchers.Kugou;
 
   @override
-  Future<List<ISearchResult>?> searchForResultsByString(String searchString) async {
+  Future<List<ISearchResult>?> searchForResultsByString(
+      String searchString) async {
     var search = <ISearchResult>[];
 
     try {
@@ -37,4 +38,4 @@ class KugouSearcher extends Searcher implements ISearcher {
 
     return search;
   }
-} 
+}

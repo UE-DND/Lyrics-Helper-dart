@@ -12,7 +12,11 @@ class LyricifyLinesParser {
   LyricifyLinesParser._();
 
   static LyricsData parse(String lyrics) {
-    var lyricsLines = lyrics.replaceAll("[type:LyricifyLines]", "").trim().split('\n').toList();
+    var lyricsLines = lyrics
+        .replaceAll("[type:LyricifyLines]", "")
+        .trim()
+        .split('\n')
+        .toList();
     var data = LyricsData()
       ..file = (FileInfo()
         ..syncTypes = SyncTypes.lineSynced
@@ -20,7 +24,8 @@ class LyricifyLinesParser {
         ..additionalInfo = (GeneralAdditionalInfo()..attributes = []));
 
     // 处理 Attributes，并获取可能的 offset
-    final offset = AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
+    final offset =
+        AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
 
     var lines = _parseLyrics(lyricsLines, offset);
     data.lines = lines.cast<ILineInfo>().toList();
@@ -32,17 +37,18 @@ class LyricifyLinesParser {
     offset ??= 0;
     var lyricsArray = <LineInfo>[];
     for (var line in lines) {
-      if (!line.startsWith('[') || !line.contains(',') || !line.contains(']')) continue;
+      if (!line.startsWith('[') || !line.contains(',') || !line.contains(']'))
+        continue;
       try {
         int begin = int.parse(line.between("[", ","));
         int end = int.parse(line.between(",", "]"));
         String text = line.substring(line.indexOf(']') + 1).trim();
-        lyricsArray.add(
-            LineInfo.fromTextAndTimes(text, begin - offset, end - offset));
+        lyricsArray
+            .add(LineInfo.fromTextAndTimes(text, begin - offset, end - offset));
       } catch (e) {
         // Ignore parse errors
       }
     }
     return lyricsArray;
   }
-} 
+}

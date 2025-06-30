@@ -6,7 +6,8 @@ import '../models/additional_file_info.dart';
 class AttributesHelper {
   AttributesHelper._();
 
-  static int? parseGeneralAttributesToLyricsData(LyricsData data, List<String> lines) {
+  static int? parseGeneralAttributesToLyricsData(
+      LyricsData data, List<String> lines) {
     int? offset;
     data.trackMetadata ??= TrackMetadata();
     for (var i = 0; i < lines.length; i++) {
@@ -29,10 +30,14 @@ class AttributesHelper {
             offset = int.tryParse(attribute.value);
             break;
         }
-        if (attribute.key == "hash" && data.file!.additionalInfo is KrcAdditionalInfo) {
-          (data.file!.additionalInfo as KrcAdditionalInfo).hash = attribute.value;
+        if (attribute.key == "hash" &&
+            data.file!.additionalInfo is KrcAdditionalInfo) {
+          (data.file!.additionalInfo as KrcAdditionalInfo).hash =
+              attribute.value;
         } else if (data.file!.additionalInfo is GeneralAdditionalInfo) {
-          (data.file!.additionalInfo as GeneralAdditionalInfo).attributes!.add(attribute);
+          (data.file!.additionalInfo as GeneralAdditionalInfo)
+              .attributes!
+              .add(attribute);
         }
         lines.removeAt(i--);
       } else {
@@ -53,4 +58,4 @@ class AttributesHelper {
     String value = line.substring(line.indexOf(':') + 1, line.length - 1);
     return MapEntry(key, value);
   }
-} 
+}

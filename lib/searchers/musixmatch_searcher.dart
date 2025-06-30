@@ -29,7 +29,8 @@ class MusixmatchSearcher implements ISearcher {
   Future<ISearchResult?> searchForResultWithMinimumMatch(
       ITrackMetadata track, CompareMatchType minimumMatch) async {
     var result = await searchForResults(track);
-    if (result.isNotEmpty && (result[0].matchType?.index ?? 0) >= minimumMatch.index) {
+    if (result.isNotEmpty &&
+        (result[0].matchType?.index ?? 0) >= minimumMatch.index) {
       return result[0];
     }
     return null;
@@ -40,10 +41,11 @@ class MusixmatchSearcher implements ISearcher {
     var search = <ISearchResult>[];
 
     try {
-      var result = await Providers.musixmatchApi.getTrack(track, artist, duration: duration != null ? duration ~/ 1000 : null);
+      var result = await Providers.musixmatchApi.getTrack(track, artist,
+          duration: duration != null ? duration ~/ 1000 : null);
       var t = result?.message?.body?.track;
       if (t == null) return null;
-      
+
       var r = MusixmatchSearchResult.fromTrack(t);
       search.add(r);
     } catch (e) {
@@ -62,7 +64,8 @@ class MusixmatchSearcher implements ISearcher {
       for (var r in results) {
         r.setMatchType(CompareHelper.compareTrack(track, r));
       }
-      results.sort((x, y) => -(x.matchType?.index ?? 0).compareTo(y.matchType?.index ?? 0));
+      results.sort((x, y) =>
+          -(x.matchType?.index ?? 0).compareTo(y.matchType?.index ?? 0));
       return results;
     }
     return [];
@@ -75,7 +78,8 @@ class MusixmatchSearcher implements ISearcher {
   }
 
   @override
-  Future<List<ISearchResult>?> searchForResultsByString(String searchString) async {
+  Future<List<ISearchResult>?> searchForResultsByString(
+      String searchString) async {
     return await searchForResultsByTrackArtist(searchString, "", null);
   }
-} 
+}

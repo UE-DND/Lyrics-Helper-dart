@@ -21,4 +21,4 @@ class FileInfo {
 
   @override
   String toString() => toJson().toString();
-} 
+}

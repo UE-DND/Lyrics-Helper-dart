@@ -66,9 +66,10 @@ abstract class Searcher implements ISearcher {
   @override
   Future<List<ISearchResult>> searchForResultsWithFullSearch(
       ITrackMetadata track, bool fullSearch) async {
-    String searchString = "${track.title} ${track.artist?.replaceAll(", ", " ")} ${track.album}"
-        .replaceAll(" - ", " ")
-        .trim();
+    String searchString =
+        "${track.title} ${track.artist?.replaceAll(", ", " ")} ${track.album}"
+            .replaceAll(" - ", " ")
+            .trim();
     var searchResults = <ISearchResult>[];
 
     var level = 1;
@@ -90,8 +91,9 @@ abstract class Searcher implements ISearcher {
         var newSearchString = "";
         switch (level) {
           case 1:
-            newSearchString =
-                "$newTitle ${track.artist?.replaceAll(", ", " ")}".replaceAll(" - ", " ").trim();
+            newSearchString = "$newTitle ${track.artist?.replaceAll(", ", " ")}"
+                .replaceAll(" - ", " ")
+                .trim();
             break;
           case 2:
             newSearchString = "$newTitle".replaceAll(" - ", " ").trim();
@@ -113,8 +115,9 @@ abstract class Searcher implements ISearcher {
       result.setMatchType(CompareHelper.compareTrack(track, result));
     }
 
-    searchResults.sort((x, y) => (x.matchType?.index ?? 0).compareTo(y.matchType?.index ?? 0));
+    searchResults.sort(
+        (x, y) => (x.matchType?.index ?? 0).compareTo(y.matchType?.index ?? 0));
 
     return searchResults;
   }
-} 
+}

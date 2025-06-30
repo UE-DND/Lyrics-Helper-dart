@@ -13,7 +13,8 @@ class Musixmatch {
     }
   }
 
-  static void standardizeMusixmatchLyricsForSyllableLine(SyllableLineInfo syllableLine) {
+  static void standardizeMusixmatchLyricsForSyllableLine(
+      SyllableLineInfo syllableLine) {
     for (int i = 1; i < syllableLine.syllables.length; i++) {
       if (syllableLine.syllables[i].text == " ") {
         final prevSyllable = syllableLine.syllables[i - 1];
@@ -25,4 +26,4 @@ class Musixmatch {
     }
     syllableLine.refreshProperties();
   }
-} 
+}

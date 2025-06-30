@@ -8,7 +8,7 @@ class _QQMusicApi {
     // 临时实现，在 Providers 模块完成后将更新
     return null;
   }
-  
+
   static Future<QqLyricsResponse?> getLyricsAsync(String id) async {
     // 临时实现，在 Providers 模块完成后将更新
     return null;
@@ -17,7 +17,7 @@ class _QQMusicApi {
 
 class QrcHelper {
   /// 通过 Mid 获取解密后的歌词
-  /// 
+  ///
   /// [mid] QQ 音乐歌曲 Mid
   /// 返回解密后的歌词
   static Future<QqLyricsResponse?> getLyricsByMid(String mid) async {
@@ -26,7 +26,7 @@ class QrcHelper {
   }
 
   /// 通过 Mid 获取解密后的歌词（异步）
-  /// 
+  ///
   /// [mid] QQ 音乐歌曲 Mid
   /// 返回解密后的歌词
   static Future<QqLyricsResponse?> getLyricsByMidAsync(String mid) async {
@@ -36,12 +36,12 @@ class QrcHelper {
       if (song == null || song.data == null || song.data!.isEmpty) {
         return null;
       }
-      
+
       final id = song.data![0].id;
       if (id == null) {
         return null;
       }
-      
+
       return await getLyricsAsync(id);
     } catch (e) {
       return null;
@@ -49,7 +49,7 @@ class QrcHelper {
   }
 
   /// 通过 ID 获取解密后的歌词
-  /// 
+  ///
   /// [id] QQ 音乐歌曲 ID
   /// 返回解密后的歌词
   static Future<QqLyricsResponse?> getLyrics(String id) async {
@@ -58,7 +58,7 @@ class QrcHelper {
   }
 
   /// 通过 ID 获取解密后的歌词（异步）
-  /// 
+  ///
   /// [id] QQ 音乐歌曲 ID
   /// 返回解密后的歌词
   static Future<QqLyricsResponse?> getLyricsAsync(String id) async {
@@ -72,4 +72,4 @@ class QrcHelper {
 }
 
 // 为保持向后兼容性，提供原始名称的别名
-class Helper extends QrcHelper {} 
+class Helper extends QrcHelper {}

@@ -10,7 +10,8 @@ class KugouSearchResult implements ISearchResult {
   @override
   ISearcher get searcher => KugouSearcher();
 
-  KugouSearchResult(String title, List<String> artists, String album, List<String>? albumArtists, int durationMs, String hash) {
+  KugouSearchResult(String title, List<String> artists, String album,
+      List<String>? albumArtists, int durationMs, String hash) {
     _title = title;
     _artists = artists;
     _album = album;
@@ -19,14 +20,17 @@ class KugouSearchResult implements ISearchResult {
     _hash = hash;
   }
 
-  KugouSearchResult.fromInfoItem(InfoItem song) : this(
-    song.songName ?? "",
-    (song.singerName ?? "").split('、').where((s) => s.isNotEmpty).toList(),
-    song.albumName ?? "", // 很可能会包含中文译名
-    null,
-    song.duration * 1000,
-    song.hash ?? ""
-  );
+  KugouSearchResult.fromInfoItem(InfoItem song)
+      : this(
+            song.songName ?? "",
+            (song.singerName ?? "")
+                .split('、')
+                .where((s) => s.isNotEmpty)
+                .toList(),
+            song.albumName ?? "", // 很可能会包含中文译名
+            null,
+            song.duration * 1000,
+            song.hash ?? "");
 
   late final String _title;
   @override
@@ -65,4 +69,4 @@ class KugouSearchResult implements ISearchResult {
   void setMatchType(CompareMatchType? matchType) {
     _matchType = matchType;
   }
-} 
+}

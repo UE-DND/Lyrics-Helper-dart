@@ -8,4 +8,4 @@ class NeteaseProviderResult implements IProviderResult {
 
   @override
   ISearchResult get searchResult => throw UnimplementedError();
-} 
+}

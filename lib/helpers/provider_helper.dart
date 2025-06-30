@@ -17,4 +17,4 @@ class ProviderHelper {
   static kugou.Api get kugouApi => providers.Providers.kugouApi;
 
   static musixmatch.Api get musixmatchApi => providers.Providers.musixmatchApi;
-} 
+}

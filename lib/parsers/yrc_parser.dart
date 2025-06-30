@@ -31,11 +31,13 @@ class YrcParser {
 
     // Parse credits from start
     if (firstLyricIndex > 0) {
-      final creditsJson = input.substring(0, firstLyricIndex).trim().split('\n');
+      final creditsJson =
+          input.substring(0, firstLyricIndex).trim().split('\n');
       for (final line in creditsJson) {
         try {
           final credits = CreditsInfo.fromJson(json.decode(line));
-          lines.add(LineInfo.fromTextAndStartTime(credits.credits.map((c) => c.text).join(), credits.timestamp));
+          lines.add(LineInfo.fromTextAndStartTime(
+              credits.credits.map((c) => c.text).join(), credits.timestamp));
         } catch (e) {
           // ignore
         }
@@ -50,7 +52,7 @@ class YrcParser {
         break;
       }
     }
-    
+
     // Parse credits from end
     if (lastLyricIndex < input.length) {
       final creditsJson = input.substring(lastLyricIndex).trim().split('\n');
@@ -58,7 +60,8 @@ class YrcParser {
       for (final line in creditsJson) {
         try {
           final credits = CreditsInfo.fromJson(json.decode(line));
-          endCredits.add(LineInfo.fromTextAndStartTime(credits.credits.map((c) => c.text).join(), credits.timestamp));
+          endCredits.add(LineInfo.fromTextAndStartTime(
+              credits.credits.map((c) => c.text).join(), credits.timestamp));
         } catch (e) {
           // ignore
         }
@@ -75,7 +78,8 @@ class YrcParser {
     return lyricsData;
   }
 
-  static List<ILineInfo> _parseOnlyLyrics(String input, int startIndex, int endIndex) {
+  static List<ILineInfo> _parseOnlyLyrics(
+      String input, int startIndex, int endIndex) {
     var lines = <SyllableLineInfo>[];
     var karaokeWordInfos = <ISyllableInfo>[];
     var timeSpanBuilder = 0;
@@ -89,8 +93,11 @@ class YrcParser {
 
       if (curChar == '\n' || curChar == '\r') {
         if (lyricStringBuilder.isNotEmpty) {
-           karaokeWordInfos.add(SyllableInfo.create(lyricStringBuilder.toString(), wordTimespan, wordTimespan + wordDuration));
-           lyricStringBuilder.clear();
+          karaokeWordInfos.add(SyllableInfo.create(
+              lyricStringBuilder.toString(),
+              wordTimespan,
+              wordTimespan + wordDuration));
+          lyricStringBuilder.clear();
         }
         if (karaokeWordInfos.isNotEmpty) {
           lines.add(SyllableLineInfo.fromSyllables(karaokeWordInfos));
@@ -222,11 +229,12 @@ class YrcParser {
           break;
       }
     }
-     if (lyricStringBuilder.isNotEmpty) {
-        karaokeWordInfos.add(SyllableInfo.create(lyricStringBuilder.toString(), wordTimespan, wordTimespan + wordDuration));
+    if (lyricStringBuilder.isNotEmpty) {
+      karaokeWordInfos.add(SyllableInfo.create(lyricStringBuilder.toString(),
+          wordTimespan, wordTimespan + wordDuration));
     }
     if (karaokeWordInfos.isNotEmpty) {
-        lines.add(SyllableLineInfo.fromSyllables(karaokeWordInfos));
+      lines.add(SyllableLineInfo.fromSyllables(karaokeWordInfos));
     }
 
     return lines;
@@ -245,4 +253,4 @@ enum _CurrentState {
   possiblyWordTimestamp,
   wordUnknownItem,
   lyric
-} 
+}

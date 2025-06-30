@@ -80,4 +80,4 @@ extension LyricsRawTypesExtension on LyricsRawTypes {
         return LyricsTypes.musixmatch;
     }
   }
-} 
+}

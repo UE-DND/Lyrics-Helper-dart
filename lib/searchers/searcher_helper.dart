@@ -7,11 +7,13 @@ import 'qqmusic_searcher.dart';
 class SearcherHelper {
   static QQMusicSearcher? _qqMusicSearcher;
 
-  static QQMusicSearcher get qqMusicSearcher => _qqMusicSearcher ??= QQMusicSearcher();
+  static QQMusicSearcher get qqMusicSearcher =>
+      _qqMusicSearcher ??= QQMusicSearcher();
 
   static NeteaseSearcher? _neteaseSearcher;
 
-  static NeteaseSearcher get neteaseSearcher => _neteaseSearcher ??= NeteaseSearcher();
+  static NeteaseSearcher get neteaseSearcher =>
+      _neteaseSearcher ??= NeteaseSearcher();
 
   static KugouSearcher? _kugouSearcher;
 
@@ -19,5 +21,6 @@ class SearcherHelper {
 
   static MusixmatchSearcher? _musixmatchSearcher;
 
-  static MusixmatchSearcher get musixmatchSearcher => _musixmatchSearcher ??= MusixmatchSearcher();
-} 
+  static MusixmatchSearcher get musixmatchSearcher =>
+      _musixmatchSearcher ??= MusixmatchSearcher();
+}

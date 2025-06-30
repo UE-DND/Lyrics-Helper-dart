@@ -13,19 +13,21 @@ abstract class ILineInfo implements Comparable<ILineInfo> {
   int? get endTime;
 
   /// 持续时间（毫秒）
-  int? get duration => endTime != null && startTime != null ? endTime! - startTime! : null;
+  int? get duration =>
+      endTime != null && startTime != null ? endTime! - startTime! : null;
 
   /// 包含副行时的开始时间（取主行和副行的较小值）
-  int? get startTimeWithSubLine => MathHelper.min(startTime, subLine?.startTime);
+  int? get startTimeWithSubLine =>
+      MathHelper.min(startTime, subLine?.startTime);
 
   /// 包含副行时的结束时间（取主行和副行的较大值）
   int? get endTimeWithSubLine => MathHelper.max(endTime, subLine?.endTime);
 
   /// 包含副行时的持续时间
-  int? get durationWithSubLine => 
-    endTimeWithSubLine != null && startTimeWithSubLine != null 
-      ? endTimeWithSubLine! - startTimeWithSubLine!
-      : null;
+  int? get durationWithSubLine =>
+      endTimeWithSubLine != null && startTimeWithSubLine != null
+          ? endTimeWithSubLine! - startTimeWithSubLine!
+          : null;
 
   /// 歌词对齐方式
   LyricsAlignment get lyricsAlignment;
@@ -39,8 +41,8 @@ abstract class ILineInfo implements Comparable<ILineInfo> {
       return text;
     } else {
       final buffer = StringBuffer();
-      if (subLine!.startTime != null && 
-          startTime != null && 
+      if (subLine!.startTime != null &&
+          startTime != null &&
           subLine!.startTime! < startTime!) {
         buffer.write('(');
         buffer.write(subLine!.text.removeFrontBackBrackets());
@@ -63,7 +65,8 @@ abstract class IFullLineInfo implements ILineInfo {
   Map<String, String> get translations;
 
   /// 中文翻译
-  String? get chineseTranslation => translations.containsKey('zh') ? translations['zh'] : null;
+  String? get chineseTranslation =>
+      translations.containsKey('zh') ? translations['zh'] : null;
   set chineseTranslation(String? value) {
     if (value == null || value.isEmpty) {
       translations.remove('zh');
@@ -82,4 +85,4 @@ enum LyricsAlignment {
   unspecified,
   left,
   right,
-} 
+}

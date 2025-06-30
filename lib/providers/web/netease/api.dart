@@ -51,7 +51,7 @@ class Api extends BaseApi {
     final raw = await postAsync(url, body: prepared);
     return model.LyricResult.fromJson(jsonDecode(raw));
   }
-  
+
   //-=-=-=-=-=-=-= WEAPI Crypto Helpers =-=-=-=-=-=-=-
 
   Map<String, String> _prepare(String raw) {
@@ -65,9 +65,11 @@ class Api extends BaseApi {
   }
 
   String _createSecretKey(int length) {
-    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     final random = Random.secure();
-    return List.generate(length, (index) => chars[random.nextInt(chars.length)]).join();
+    return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+        .join();
   }
 
   String _aesEncrypt(List<int> buffer, String key) {
@@ -76,10 +78,15 @@ class Api extends BaseApi {
     final cbc = CBCBlockCipher(AESEngine());
     final paddedCipher = PaddedBlockCipherImpl(PKCS7Padding(), cbc);
 
-    paddedCipher.init(true, PaddedBlockCipherParameters(ParametersWithIV(KeyParameter(Uint8List.fromList(keyBytes)), Uint8List.fromList(iv)), null));
+    paddedCipher.init(
+        true,
+        PaddedBlockCipherParameters(
+            ParametersWithIV(KeyParameter(Uint8List.fromList(keyBytes)),
+                Uint8List.fromList(iv)),
+            null));
     return base64.encode(paddedCipher.process(Uint8List.fromList(buffer)));
   }
-  
+
   String _rsaEncrypt(String text, String pubKey, String modulus) {
     final keyBytes = utf8.encode(text).reversed.toList();
     final biText = BigInt.parse('1${hex.encode(keyBytes)}', radix: 16);
@@ -125,7 +132,8 @@ class Api extends BaseApi {
     return model.PlaylistResult.fromJson(jsonDecode(raw));
   }
 
-  Future<Map<String, model.Datum>> getDatum(List<String> songIds, {int bitrate = 999000}) async {
+  Future<Map<String, model.Datum>> getDatum(List<String> songIds,
+      {int bitrate = 999000}) async {
     final urls = await _getSongsUrl(songIds, bitrate: bitrate);
     final map = <String, model.Datum>{};
     if (urls?.code == 200 && urls?.data != null) {
@@ -166,8 +174,10 @@ class Api extends BaseApi {
   }
 
   //-=-=-=-=- private helpers -=-=-=-=-
-  Future<model.SongUrls?> _getSongsUrl(List<String> songIds, {int bitrate = 999000}) async {
-    const url = "https://music.163.com/weapi/song/enhance/player/url?csrf_token=";
+  Future<model.SongUrls?> _getSongsUrl(List<String> songIds,
+      {int bitrate = 999000}) async {
+    const url =
+        "https://music.163.com/weapi/song/enhance/player/url?csrf_token=";
     final data = jsonEncode({
       "ids": "[${songIds.join(',')}]",
       "br": bitrate.toString(),
@@ -191,4 +201,4 @@ class Api extends BaseApi {
   }
 }
 
-enum SearchType { song, album, playlist } 
+enum SearchType { song, album, playlist }

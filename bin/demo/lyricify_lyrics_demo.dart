@@ -28,22 +28,16 @@ Future<void> parsersDemo() async {
   final cases = <String, LyricsRawTypes>{
     'bin/demo/RawLyrics/LyricifySyllableDemo.txt':
         LyricsRawTypes.lyricifySyllable,
-    'bin/demo/RawLyrics/LsMixQrcDemo.txt':
-        LyricsRawTypes.lyricifySyllable,
-    'bin/demo/RawLyrics/LyricifyLinesDemo.txt':
-        LyricsRawTypes.lyricifyLines,
+    'bin/demo/RawLyrics/LsMixQrcDemo.txt': LyricsRawTypes.lyricifySyllable,
+    'bin/demo/RawLyrics/LyricifyLinesDemo.txt': LyricsRawTypes.lyricifyLines,
     'bin/demo/RawLyrics/LrcDemo.txt': LyricsRawTypes.lrc,
     'bin/demo/RawLyrics/QrcDemo.txt': LyricsRawTypes.qrc,
     'bin/demo/RawLyrics/KrcDemo.txt': LyricsRawTypes.krc,
     'bin/demo/RawLyrics/YrcDemo.txt': LyricsRawTypes.yrc,
-    'bin/demo/RawLyrics/SpotifyDemo.txt':
-        LyricsRawTypes.spotify,
-    'bin/demo/RawLyrics/SpotifySyllableDemo.txt':
-        LyricsRawTypes.spotify,
-    'bin/demo/RawLyrics/SpotifyUnsyncedDemo.txt':
-        LyricsRawTypes.spotify,
-    'bin/demo/RawLyrics/MusixmatchDemo.txt':
-        LyricsRawTypes.musixmatch,
+    'bin/demo/RawLyrics/SpotifyDemo.txt': LyricsRawTypes.spotify,
+    'bin/demo/RawLyrics/SpotifySyllableDemo.txt': LyricsRawTypes.spotify,
+    'bin/demo/RawLyrics/SpotifyUnsyncedDemo.txt': LyricsRawTypes.spotify,
+    'bin/demo/RawLyrics/MusixmatchDemo.txt': LyricsRawTypes.musixmatch,
   };
 
   for (final entry in cases.entries) {
@@ -63,8 +57,7 @@ Future<void> parsersDemo() async {
 
 /// 生成示例：演示 GenerateHelper 将解析结果转换为不同歌词格式。
 Future<void> generatorsDemo() async {
-  const src =
-      'bin/demo/RawLyrics/LyricifySyllableDemo.txt';
+  const src = 'bin/demo/RawLyrics/LyricifySyllableDemo.txt';
   final content = File(src).readAsStringSync();
   final lyricsData =
       ParseHelper.parseLyrics(content, LyricsRawTypes.lyricifySyllable)!;
@@ -89,12 +82,8 @@ Future<void> generatorsDemo() async {
 
 /// 类型检测示例：展示 TypeHelper 的判别结果。
 void typeDetectorDemo() {
-  final lrc = File(
-          'bin/demo/RawLyrics/LrcDemo.txt')
-      .readAsStringSync();
-  final qrc = File(
-          'bin/demo/RawLyrics/QrcDemo.txt')
-      .readAsStringSync();
+  final lrc = File('bin/demo/RawLyrics/LrcDemo.txt').readAsStringSync();
+  final qrc = File('bin/demo/RawLyrics/QrcDemo.txt').readAsStringSync();
 
   stdout.writeln('Is LRC? ${TypeHelper.isLyricsType(lrc, LyricsTypes.lrc)}');
   stdout.writeln('Is LRC? ${TypeHelper.isLyricsType(qrc, LyricsTypes.lrc)}');
@@ -128,4 +117,4 @@ Future<void> searchDemo() async {
   stdout
     ..writeln('===== Search Result =====')
     ..writeln(pretty);
-} 
+}

@@ -21,7 +21,8 @@ class ParseHelper {
   /// </summary>
   /// <param name="lyrics">歌词字符串</param>
   /// <returns>解析后的歌词数据</returns>
-  static LyricsData? parseLyrics(String lyrics, [LyricsRawTypes? lyricsRawType]) {
+  static LyricsData? parseLyrics(String lyrics,
+      [LyricsRawTypes? lyricsRawType]) {
     lyricsRawType ??= TypeHelper.getLyricsTypes(lyrics);
     if (lyricsRawType != LyricsRawTypes.unknown) {
       return _parseLyrics(lyrics, lyricsRawType);
@@ -57,4 +58,4 @@ class ParseHelper {
         return null;
     }
   }
-} 
+}

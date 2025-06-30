@@ -24,7 +24,7 @@ class SpotifyParser {
           ..additionalInfo = SpotifyAdditionalInfo())
         ..lines = lyrics;
       return lyricsData;
-        } catch (e) {
+    } catch (e) {
       // Ignore parsing errors
     }
     return null;
@@ -51,13 +51,16 @@ class SpotifyParser {
         for (var syllable in line.syllables) {
           final charsCount = syllable.charsCount;
           syllables.add(SyllableInfo.create(
-              line.words.substring(i, i + charsCount), syllable.startTime, syllable.endTime));
+              line.words.substring(i, i + charsCount),
+              syllable.startTime,
+              syllable.endTime));
           i += charsCount;
         }
         list.add(SyllableLineInfo.fromSyllables(syllables));
       } else {
         if (line.endTime != 0) {
-          list.add(LineInfo.fromTextAndTimes(line.words, line.startTime, line.endTime));
+          list.add(LineInfo.fromTextAndTimes(
+              line.words, line.startTime, line.endTime));
         } else {
           list.add(LineInfo.fromTextAndStartTime(line.words, line.startTime));
         }
@@ -65,7 +68,7 @@ class SpotifyParser {
     }
     return list;
   }
-  
+
   static SyncTypes _getSyncType(String syncType) {
     switch (syncType) {
       case "UNSYNCED":
@@ -78,4 +81,4 @@ class SpotifyParser {
         return SyncTypes.unknown;
     }
   }
-} 
+}

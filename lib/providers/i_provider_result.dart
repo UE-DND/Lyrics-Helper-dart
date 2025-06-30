@@ -5,4 +5,4 @@ abstract class IProviderResult {
   IProvider get provider;
 
   ISearchResult get searchResult;
-} 
+}

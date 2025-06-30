@@ -58,4 +58,4 @@ enum LyricsRawTypes {
 
   final int value;
   const LyricsRawTypes(this.value);
-} 
+}

@@ -1,4 +1,3 @@
-
 class KugouLyricsResponse {
   final String? content;
   final String? info;
@@ -100,4 +99,4 @@ class ContentItem {
       'lyricContent': lyricContent,
     };
   }
-} 
+}

@@ -23,7 +23,8 @@ class RichSyncedLine {
     required this.text,
   });
 
-  factory RichSyncedLine.fromJson(Map<String, dynamic> json) => _$RichSyncedLineFromJson(json);
+  factory RichSyncedLine.fromJson(Map<String, dynamic> json) =>
+      _$RichSyncedLineFromJson(json);
 
   Map<String, dynamic> toJson() => _$RichSyncedLineToJson(this);
 }
@@ -44,4 +45,4 @@ class Word {
   factory Word.fromJson(Map<String, dynamic> json) => _$WordFromJson(json);
 
   Map<String, dynamic> toJson() => _$WordToJson(this);
-} 
+}

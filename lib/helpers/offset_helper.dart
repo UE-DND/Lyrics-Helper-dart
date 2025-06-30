@@ -46,4 +46,4 @@ class OffsetHelper {
     }
     line.refreshProperties();
   }
-} 
+}

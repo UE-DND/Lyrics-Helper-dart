@@ -12,7 +12,8 @@ class CreditsInfo {
 
   CreditsInfo({required this.timestamp, required this.credits});
 
-  factory CreditsInfo.fromJson(Map<String, dynamic> json) => _$CreditsInfoFromJson(json);
+  factory CreditsInfo.fromJson(Map<String, dynamic> json) =>
+      _$CreditsInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreditsInfoToJson(this);
 }
@@ -33,4 +34,4 @@ class Credit {
   factory Credit.fromJson(Map<String, dynamic> json) => _$CreditFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreditToJson(this);
-} 
+}

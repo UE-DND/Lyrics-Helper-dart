@@ -32,4 +32,4 @@ abstract class ISearchResult {
 
   /// 设置匹配程度
   void setMatchType(CompareMatchType? matchType);
-} 
+}

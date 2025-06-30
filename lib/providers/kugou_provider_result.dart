@@ -8,4 +8,4 @@ class KugouProviderResult implements IProviderResult {
 
   @override
   ISearchResult get searchResult => throw UnimplementedError();
-} 
+}

@@ -11,4 +11,4 @@ abstract class ISyllableInfo {
 
   /// 持续时间（毫秒）
   int get duration => endTime - startTime;
-} 
+}

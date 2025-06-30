@@ -46,4 +46,4 @@ class SearchersHelper {
     if (searcher is MusixmatchSearcher) return Searchers.Musixmatch;
     return null;
   }
-} 
+}

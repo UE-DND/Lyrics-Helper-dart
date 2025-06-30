@@ -14,9 +14,10 @@ class Providers {
 
   static kugou.Api get kugouApi => _kugouApi ??= kugou.Api();
 
-  static musixmatch.Api get musixmatchApi => _musixmatchApi ??= musixmatch.Api();
+  static musixmatch.Api get musixmatchApi =>
+      _musixmatchApi ??= musixmatch.Api();
 
   static netease.Api get neteaseApi => _neteaseApi ??= netease.Api();
 
   static qqmusic.Api get qqMusicApi => _qqMusicApi ??= qqmusic.Api();
-} 
+}

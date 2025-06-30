@@ -30,10 +30,14 @@ class NameMatchHelper {
       special = '($special';
       final c1 = str1.contains(special);
       final c2 = str2.contains(special);
-      if (c1 && !c2 && str1.substring(0, str1.indexOf(special)).trim() == str2) {
+      if (c1 &&
+          !c2 &&
+          str1.substring(0, str1.indexOf(special)).trim() == str2) {
         return true;
       }
-      if (c2 && !c1 && str2.substring(0, str2.indexOf(special)).trim() == str1) {
+      if (c2 &&
+          !c1 &&
+          str2.substring(0, str2.indexOf(special)).trim() == str1) {
         return true;
       }
       return false;
@@ -50,7 +54,8 @@ class NameMatchHelper {
       return false;
     }
 
-    bool duoSpecialCompare(String str1, String str2, String special1, String special2) {
+    bool duoSpecialCompare(
+        String str1, String str2, String special1, String special2) {
       special1 = '($special1';
       special2 = '($special2';
       if (str1.contains(special1) &&
@@ -84,13 +89,17 @@ class NameMatchHelper {
 
     if (specialCompare(name1, name2, 'deluxe')) return NameMatchType.veryHigh;
     if (specialCompare(name1, name2, 'explicit')) return NameMatchType.veryHigh;
-    if (specialCompare(name1, name2, 'special edition')) return NameMatchType.veryHigh;
-    if (specialCompare(name1, name2, 'bonus track')) return NameMatchType.veryHigh;
+    if (specialCompare(name1, name2, 'special edition'))
+      return NameMatchType.veryHigh;
+    if (specialCompare(name1, name2, 'bonus track'))
+      return NameMatchType.veryHigh;
     if (specialCompare(name1, name2, 'feat')) return NameMatchType.veryHigh;
     if (specialCompare(name1, name2, 'with')) return NameMatchType.veryHigh;
 
-    if (duoSpecialCompare(name1, name2, 'feat', 'explicit')) return NameMatchType.high;
-    if (duoSpecialCompare(name1, name2, 'with', 'explicit')) return NameMatchType.high;
+    if (duoSpecialCompare(name1, name2, 'feat', 'explicit'))
+      return NameMatchType.high;
+    if (duoSpecialCompare(name1, name2, 'with', 'explicit'))
+      return NameMatchType.high;
     if (singleSpecialCompare(name1, name2, 'feat')) return NameMatchType.high;
     if (singleSpecialCompare(name1, name2, 'with')) return NameMatchType.high;
 
@@ -103,12 +112,15 @@ class NameMatchHelper {
         if (name1[i] == name2[i]) count++;
       }
       if ((count / name1.length >= 0.8 && name1.length >= 4) ||
-          (count / name1.length >= 0.5 && name1.length >= 2 && name1.length <= 3)) {
+          (count / name1.length >= 0.5 &&
+              name1.length >= 2 &&
+              name1.length <= 3)) {
         return NameMatchType.high;
       }
     }
 
-    final samePercent = StringHelper.computeTextSame(name1, name2, isCase: true);
+    final samePercent =
+        StringHelper.computeTextSame(name1, name2, isCase: true);
     if (samePercent > 90) return NameMatchType.veryHigh;
     if (samePercent > 80) return NameMatchType.high;
     if (samePercent > 68) return NameMatchType.medium;
@@ -158,4 +170,4 @@ extension NameMatchScore on NameMatchType? {
         return 0;
     }
   }
-} 
+}

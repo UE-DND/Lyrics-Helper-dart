@@ -42,13 +42,23 @@ class EapiSong {
   final int? publishTime;
   final Privilege? privilege;
 
-  EapiSong({required this.name, required this.id, this.artists, this.alias, this.album, required this.duration, this.publishTime, this.privilege});
+  EapiSong(
+      {required this.name,
+      required this.id,
+      this.artists,
+      this.alias,
+      this.album,
+      required this.duration,
+      this.publishTime,
+      this.privilege});
 
-  factory EapiSong.fromJson(Map<String, dynamic> json) => _$EapiSongFromJson(json);
+  factory EapiSong.fromJson(Map<String, dynamic> json) =>
+      _$EapiSongFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
-class Ar { // Artist
+class Ar {
+  // Artist
   final int id;
   final String name;
 
@@ -57,8 +67,9 @@ class Ar { // Artist
   factory Ar.fromJson(Map<String, dynamic> json) => _$ArFromJson(json);
 }
 
-@JsonSerializable(createToJson:false)
-class Al { // Album
+@JsonSerializable(createToJson: false)
+class Al {
+  // Album
   final int id;
   final String name;
   final String? picUrl;
@@ -67,7 +78,6 @@ class Al { // Album
 
   factory Al.fromJson(Map<String, dynamic> json) => _$AlFromJson(json);
 }
-
 
 //-=-=-=-=-=-=-= Lyric Result Models =-=-=-=-=-=-=-
 
@@ -89,14 +99,29 @@ class LyricResult {
   final Lyrics? tlyric;
   @JsonKey(name: 'romalrc')
   final Lyrics? romalrc;
-   @JsonKey(name: 'yrc')
+  @JsonKey(name: 'yrc')
   final Lyrics? yrc;
   @JsonKey(name: 'ytlrc')
   final Lyrics? ytlrc;
   @JsonKey(name: 'yromalrc')
   final Lyrics? yromalrc;
 
-  LyricResult({required this.code, this.sgc, this.sfy, this.qfy, this.nolyric, this.uncollected, this.transUser, this.lyricUser, this.lrc, this.klyric, this.tlyric, this.romalrc, this.yrc, this.ytlrc, this.yromalrc});
+  LyricResult(
+      {required this.code,
+      this.sgc,
+      this.sfy,
+      this.qfy,
+      this.nolyric,
+      this.uncollected,
+      this.transUser,
+      this.lyricUser,
+      this.lrc,
+      this.klyric,
+      this.tlyric,
+      this.romalrc,
+      this.yrc,
+      this.ytlrc,
+      this.yromalrc});
 
   factory LyricResult.fromJson(Map<String, dynamic> json) =>
       _$LyricResultFromJson(json);
@@ -142,7 +167,13 @@ class SearchResultData {
   @JsonKey(name: 'playlistCount')
   final int? playlistCount;
 
-  SearchResultData({this.songs, this.songCount, this.albums, this.albumCount, this.playlists, this.playlistCount});
+  SearchResultData(
+      {this.songs,
+      this.songCount,
+      this.albums,
+      this.albumCount,
+      this.playlists,
+      this.playlistCount});
 
   factory SearchResultData.fromJson(Map<String, dynamic> json) =>
       _$SearchResultDataFromJson(json);
@@ -164,7 +195,15 @@ class Song {
   final int? publishTime;
   final Privilege? privilege;
 
-  Song({required this.name, required this.id, this.artists, this.alias, this.album, this.duration, this.publishTime, this.privilege});
+  Song(
+      {required this.name,
+      required this.id,
+      this.artists,
+      this.alias,
+      this.album,
+      this.duration,
+      this.publishTime,
+      this.privilege});
 
   factory Song.fromJson(Map<String, dynamic> json) => _$SongFromJson(json);
 }
@@ -178,7 +217,8 @@ class ArtistMini {
 
   ArtistMini({required this.id, required this.name});
 
-  factory ArtistMini.fromJson(Map<String, dynamic> json) => _$ArtistMiniFromJson(json);
+  factory ArtistMini.fromJson(Map<String, dynamic> json) =>
+      _$ArtistMiniFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -189,7 +229,8 @@ class AlbumMini {
 
   AlbumMini({required this.id, required this.name, this.picUrl});
 
-  factory AlbumMini.fromJson(Map<String, dynamic> json) => _$AlbumMiniFromJson(json);
+  factory AlbumMini.fromJson(Map<String, dynamic> json) =>
+      _$AlbumMiniFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -204,9 +245,18 @@ class SimplePlaylist {
   final String? description;
   final int? playCount;
 
-  SimplePlaylist({required this.id, required this.name, this.coverImgUrl, this.trackCount, this.userId, this.creator, this.description, this.playCount});
+  SimplePlaylist(
+      {required this.id,
+      required this.name,
+      this.coverImgUrl,
+      this.trackCount,
+      this.userId,
+      this.creator,
+      this.description,
+      this.playCount});
 
-  factory SimplePlaylist.fromJson(Map<String, dynamic> json) => _$SimplePlaylistFromJson(json);
+  factory SimplePlaylist.fromJson(Map<String, dynamic> json) =>
+      _$SimplePlaylistFromJson(json);
 }
 
 //-=-=-=-=-=-=-= Album / Playlist Result Models (simplified) =-=-=-=-=-=-=
@@ -219,7 +269,8 @@ class AlbumResult {
 
   AlbumResult({required this.code, this.album, this.songs});
 
-  factory AlbumResult.fromJson(Map<String, dynamic> json) => _$AlbumResultFromJson(json);
+  factory AlbumResult.fromJson(Map<String, dynamic> json) =>
+      _$AlbumResultFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -231,9 +282,15 @@ class PlaylistResult {
   final Playlist? playlist;
   final List<Privilege>? privileges;
 
-  PlaylistResult({required this.code, this.urls, this.relatedVideos, this.playlist, this.privileges});
+  PlaylistResult(
+      {required this.code,
+      this.urls,
+      this.relatedVideos,
+      this.playlist,
+      this.privileges});
 
-  factory PlaylistResult.fromJson(Map<String, dynamic> json) => _$PlaylistResultFromJson(json);
+  factory PlaylistResult.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistResultFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -245,9 +302,11 @@ class PlaylistDetail {
   @JsonKey(name: 'trackCount')
   final int? trackCount;
 
-  PlaylistDetail({required this.id, required this.name, this.tracks, this.trackCount});
+  PlaylistDetail(
+      {required this.id, required this.name, this.tracks, this.trackCount});
 
-  factory PlaylistDetail.fromJson(Map<String, dynamic> json) => _$PlaylistDetailFromJson(json);
+  factory PlaylistDetail.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistDetailFromJson(json);
 }
 
 //-=-=-=-=-=-=-= Song URL & Detail Models =-=-=-=-=-=-=
@@ -259,11 +318,13 @@ class SongUrls {
 
   SongUrls({this.data, required this.code});
 
-  factory SongUrls.fromJson(Map<String, dynamic> json) => _$SongUrlsFromJson(json);
+  factory SongUrls.fromJson(Map<String, dynamic> json) =>
+      _$SongUrlsFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
 class Datum {
+  @JsonKey(name: 'id', fromJson: _dynamicToString)
   final String id;
   final String? url;
   final int? br;
@@ -279,7 +340,21 @@ class Datum {
   final int? flag;
   final bool? canExtend;
 
-  Datum({required this.id, this.url, this.br, this.size, this.md5, this.code, this.expi, this.type, this.gain, this.fee, this.uf, this.payed, this.flag, this.canExtend});
+  Datum(
+      {required this.id,
+      this.url,
+      this.br,
+      this.size,
+      this.md5,
+      this.code,
+      this.expi,
+      this.type,
+      this.gain,
+      this.fee,
+      this.uf,
+      this.payed,
+      this.flag,
+      this.canExtend});
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
 }
@@ -292,11 +367,13 @@ class DetailResult {
 
   DetailResult({this.songs, this.privileges, required this.code});
 
-  factory DetailResult.fromJson(Map<String, dynamic> json) => _$DetailResultFromJson(json);
+  factory DetailResult.fromJson(Map<String, dynamic> json) =>
+      _$DetailResultFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
 class Privilege {
+  @JsonKey(name: 'id', fromJson: _dynamicToString)
   final String id;
   final int? fee;
   final int? payed;
@@ -312,9 +389,24 @@ class Privilege {
   final bool? toast;
   final int? flag;
 
-  Privilege({required this.id, this.fee, this.payed, this.st, this.pl, this.dl, this.sp, this.cp, this.subp, this.cs, this.maxbr, this.fl, this.toast, this.flag});
+  Privilege(
+      {required this.id,
+      this.fee,
+      this.payed,
+      this.st,
+      this.pl,
+      this.dl,
+      this.sp,
+      this.cp,
+      this.subp,
+      this.cs,
+      this.maxbr,
+      this.fl,
+      this.toast,
+      this.flag});
 
-  factory Privilege.fromJson(Map<String, dynamic> json) => _$PrivilegeFromJson(json);
+  factory Privilege.fromJson(Map<String, dynamic> json) =>
+      _$PrivilegeFromJson(json);
 }
 
 // === New Classes Added for Full Mirror ===
@@ -329,9 +421,16 @@ class LyricUser {
   final String? nickname;
   final int? uptime;
 
-  LyricUser({this.id, this.status, this.demand, this.userId, this.nickname, this.uptime});
+  LyricUser(
+      {this.id,
+      this.status,
+      this.demand,
+      this.userId,
+      this.nickname,
+      this.uptime});
 
-  factory LyricUser.fromJson(Map<String, dynamic> json) => _$LyricUserFromJson(json);
+  factory LyricUser.fromJson(Map<String, dynamic> json) =>
+      _$LyricUserFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -344,9 +443,15 @@ class Creator {
   @JsonKey(name: 'avatarUrl')
   final String? avatarUrl;
 
-  Creator({this.userId, this.nickname, this.signature, this.description, this.avatarUrl});
+  Creator(
+      {this.userId,
+      this.nickname,
+      this.signature,
+      this.description,
+      this.avatarUrl});
 
-  factory Creator.fromJson(Map<String, dynamic> json) => _$CreatorFromJson(json);
+  factory Creator.fromJson(Map<String, dynamic> json) =>
+      _$CreatorFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -359,7 +464,8 @@ class ResourceInfo {
 
   ResourceInfo({this.id, this.userId, this.name, this.imgUrl, this.creator});
 
-  factory ResourceInfo.fromJson(Map<String, dynamic> json) => _$ResourceInfoFromJson(json);
+  factory ResourceInfo.fromJson(Map<String, dynamic> json) =>
+      _$ResourceInfoFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -376,9 +482,21 @@ class CommentThread {
   final int? resourceOwnerId;
   final String? resourceTitle;
 
-  CommentThread({this.id, this.resourceInfo, this.resourceType, this.commentCount, this.likedCount, this.shareCount, this.hotCount, this.latestLikedUsers, this.resourceId, this.resourceOwnerId, this.resourceTitle});
+  CommentThread(
+      {this.id,
+      this.resourceInfo,
+      this.resourceType,
+      this.commentCount,
+      this.likedCount,
+      this.shareCount,
+      this.hotCount,
+      this.latestLikedUsers,
+      this.resourceId,
+      this.resourceOwnerId,
+      this.resourceTitle});
 
-  factory CommentThread.fromJson(Map<String, dynamic> json) => _$CommentThreadFromJson(json);
+  factory CommentThread.fromJson(Map<String, dynamic> json) =>
+      _$CommentThreadFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -394,7 +512,17 @@ class Info {
   final int? shareCount;
   final String? threadId;
 
-  Info({this.commentThread, this.latestLikedUsers, this.liked, this.comments, this.resourceType, this.resourceId, this.commentCount, this.likedCount, this.shareCount, this.threadId});
+  Info(
+      {this.commentThread,
+      this.latestLikedUsers,
+      this.liked,
+      this.comments,
+      this.resourceType,
+      this.resourceId,
+      this.commentCount,
+      this.likedCount,
+      this.shareCount,
+      this.threadId});
 
   factory Info.fromJson(Map<String, dynamic> json) => _$InfoFromJson(json);
 }
@@ -417,7 +545,22 @@ class Artist {
   final int? mvSize;
   final bool? followed;
 
-  Artist({this.img1V1Id, this.topicPerson, this.picId, this.briefDesc, this.albumSize, this.img1V1Url, this.picUrl, this.alias, this.trans, this.musicSize, this.name, this.id, this.publishTime, this.mvSize, this.followed});
+  Artist(
+      {this.img1V1Id,
+      this.topicPerson,
+      this.picId,
+      this.briefDesc,
+      this.albumSize,
+      this.img1V1Url,
+      this.picUrl,
+      this.alias,
+      this.trans,
+      this.musicSize,
+      this.name,
+      this.id,
+      this.publishTime,
+      this.mvSize,
+      this.followed});
 
   factory Artist.fromJson(Map<String, dynamic> json) => _$ArtistFromJson(json);
 }
@@ -450,7 +593,32 @@ class Album {
   final String? picIdStr;
   final Info? info;
 
-  Album({this.paid, this.onSale, this.picId, this.alias, this.commentThreadId, this.publishTime, this.company, this.copyrightId, this.picUrl, this.artist, this.briefDesc, this.tags, this.artists, this.status, this.description, this.subType, this.blurPicUrl, this.companyId, this.pic, this.name, this.id, this.type, this.size, this.picIdStr, this.info});
+  Album(
+      {this.paid,
+      this.onSale,
+      this.picId,
+      this.alias,
+      this.commentThreadId,
+      this.publishTime,
+      this.company,
+      this.copyrightId,
+      this.picUrl,
+      this.artist,
+      this.briefDesc,
+      this.tags,
+      this.artists,
+      this.status,
+      this.description,
+      this.subType,
+      this.blurPicUrl,
+      this.companyId,
+      this.pic,
+      this.name,
+      this.id,
+      this.type,
+      this.size,
+      this.picIdStr,
+      this.info});
 
   factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
 }
@@ -466,8 +634,33 @@ class Playlist extends SimplePlaylist {
   final List<String>? tags;
   final List<Song>? tracks;
 
-  Playlist({required String id, required String name, String? coverImgUrl, int? trackCount, int? userId, Creator? creator, String? description, int? playCount, this.coverImgId, this.createTime, this.status, this.subscribedCount, this.shareCount, this.commentCount, this.tags, this.tracks})
-      : super(id: id, name: name, coverImgUrl: coverImgUrl, trackCount: trackCount, userId: userId, creator: creator, description: description, playCount: playCount);
+  Playlist(
+      {required String id,
+      required String name,
+      String? coverImgUrl,
+      int? trackCount,
+      int? userId,
+      Creator? creator,
+      String? description,
+      int? playCount,
+      this.coverImgId,
+      this.createTime,
+      this.status,
+      this.subscribedCount,
+      this.shareCount,
+      this.commentCount,
+      this.tags,
+      this.tracks})
+      : super(
+            id: id,
+            name: name,
+            coverImgUrl: coverImgUrl,
+            trackCount: trackCount,
+            userId: userId,
+            creator: creator,
+            description: description,
+            playCount: playCount);
 
-  factory Playlist.fromJson(Map<String, dynamic> json) => _$PlaylistFromJson(json);
-} 
+  factory Playlist.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistFromJson(json);
+}

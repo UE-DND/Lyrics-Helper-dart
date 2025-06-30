@@ -46,4 +46,4 @@ class GenerateHelper {
     if (result == null || result.trim().isEmpty) return null;
     return result;
   }
-} 
+}

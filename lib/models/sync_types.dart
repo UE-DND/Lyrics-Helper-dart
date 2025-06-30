@@ -17,4 +17,4 @@ enum SyncTypes {
 
   final int value;
   const SyncTypes(this.value);
-} 
+}

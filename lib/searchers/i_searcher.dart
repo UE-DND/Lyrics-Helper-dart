@@ -29,4 +29,4 @@ abstract class ISearcher {
 
   /// 搜索关键字的曲目列表
   Future<List<ISearchResult>?> searchForResultsByString(String searchString);
-} 
+}

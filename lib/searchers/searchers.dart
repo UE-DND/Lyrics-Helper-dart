@@ -4,4 +4,4 @@ enum Searchers {
   Netease,
   Kugou,
   Musixmatch,
-} 
+}

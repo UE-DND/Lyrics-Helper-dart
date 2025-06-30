@@ -29,7 +29,8 @@ class Api extends BaseApi {
     return GetTokenResponse.fromJson(jsonDecode(response));
   }
 
-  Future<GetTrackResponse?> getTrack(String track, String artist, {int? duration}) async {
+  Future<GetTrackResponse?> getTrack(String track, String artist,
+      {int? duration}) async {
     await _ensureUserToken();
     var query = "matcher.track.get?q_track=$track&q_artist=$artist";
     if (duration != null) {
@@ -39,7 +40,7 @@ class Api extends BaseApi {
     if (response == null) return null;
     return GetTrackResponse.fromJson(jsonDecode(response));
   }
-  
+
   Future<String?> _musixmatchGetAsync(String req, {int maxTrial = 8}) async {
     if (--maxTrial < 0) return null;
 
@@ -62,8 +63,9 @@ class Api extends BaseApi {
         return await _musixmatchGetAsync(req, maxTrial: maxTrial);
       }
     }
-    
-    if (response.contains("\"status_code\":401") && response.contains("\"hint\":\"captcha\"")) {
+
+    if (response.contains("\"status_code\":401") &&
+        response.contains("\"hint\":\"captcha\"")) {
       throw RequestCaptchaException(url, response);
     }
 
@@ -113,10 +115,12 @@ class Api extends BaseApi {
     _userToken = token;
   }
 
-  Future<GetTrackResponse?> getFullLyrics(String track, String artist, {int? duration}) async {
+  Future<GetTrackResponse?> getFullLyrics(String track, String artist,
+      {int? duration}) async {
     await _ensureUserToken();
 
-    final response = await getFullLyricsRaw(track: track, artist: artist, duration: duration);
+    final response = await getFullLyricsRaw(
+        track: track, artist: artist, duration: duration);
     if (response == null) return null;
     return GetTrackResponse.fromJson(jsonDecode(response));
   }
@@ -141,7 +145,8 @@ class Api extends BaseApi {
     }
 
     if (track == null || artist == null) {
-      throw ArgumentError("Either trackId or both track & artist must be provided.");
+      throw ArgumentError(
+          "Either trackId or both track & artist must be provided.");
     }
 
     final query = StringBuffer(
@@ -159,7 +164,8 @@ class Api extends BaseApi {
   Future<String?> getFullLyricsRawById(String trackId) =>
       getFullLyricsRaw(trackId: trackId);
 
-  Future<GetTranslationsResponse?> getTranslations(String trackId, {String language = "zh"}) async {
+  Future<GetTranslationsResponse?> getTranslations(String trackId,
+      {String language = "zh"}) async {
     final response = await _musixmatchGetAsync(
         "crowd.track.translations.get?translation_fields_set=minimal"
         "&selected_language=$language"
@@ -182,4 +188,4 @@ class RequestCaptchaException implements Exception {
   String toString() {
     return "RequestCaptchaException: $message (URL: $requestUrl)";
   }
-} 
+}

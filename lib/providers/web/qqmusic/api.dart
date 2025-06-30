@@ -22,7 +22,8 @@ class Api extends BaseApi {
     "Lyric_1": "lyric", // 解压后的内容
   };
 
-  Future<MusicFcgApiResult?> search(String keyword, SearchTypeEnum searchType) async {
+  Future<MusicFcgApiResult?> search(
+      String keyword, SearchTypeEnum searchType) async {
     int type;
     switch (searchType) {
       case SearchTypeEnum.SONG_ID:
@@ -48,7 +49,8 @@ class Api extends BaseApi {
       }
     };
 
-    var resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg", body: data);
+    var resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg",
+        body: data);
     return MusicFcgApiResult.fromJson(jsonDecode(resp));
   }
 
@@ -101,7 +103,8 @@ class Api extends BaseApi {
   }
 
   // === 新增：搜索（备用接口） ===
-  Future<MusicFcgApiAlternativeResult?> searchAlternative(String keyword) async {
+  Future<MusicFcgApiAlternativeResult?> searchAlternative(
+      String keyword) async {
     final data = {
       "music.search.SearchCgiService": {
         "method": "DoSearchForQQMusicDesktop",
@@ -114,19 +117,23 @@ class Api extends BaseApi {
         }
       }
     };
-    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg", body: data);
+    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg",
+        body: data);
     return MusicFcgApiAlternativeResult.fromJson(jsonDecode(resp));
   }
 
   // === 专辑信息 ===
   Future<AlbumResult?> getAlbum(String albumMid) async {
     final data = {"albummid": albumMid};
-    final resp = await postAsync("https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg", body: data);
+    final resp = await postAsync(
+        "https://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg",
+        body: data);
     return AlbumResult.fromJson(jsonDecode(resp));
   }
 
   // 专辑歌曲列表
-  Future<AlbumSongListResult?> getAlbumSongList(String mid, {int page = 1, int pageSize = 1000}) async {
+  Future<AlbumSongListResult?> getAlbumSongList(String mid,
+      {int page = 1, int pageSize = 1000}) async {
     final data = {
       "comm": {"ct": 24, "cv": 10000},
       "albumSonglist": {
@@ -141,12 +148,15 @@ class Api extends BaseApi {
         "module": "music.musichallAlbum.AlbumSongList"
       }
     };
-    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg?g_tk=5381&format=json&inCharset=utf8&outCharset=utf-8", body: data);
+    final resp = await postJsonAsync(
+        "https://u.y.qq.com/cgi-bin/musicu.fcg?g_tk=5381&format=json&inCharset=utf8&outCharset=utf-8",
+        body: data);
     return AlbumSongListResult.fromJson(jsonDecode(resp));
   }
 
   // 歌手歌曲列表
-  Future<SingerSongResult?> getSingerSongs(String singerMid, {int page = 1, int pageSize = 20}) async {
+  Future<SingerSongResult?> getSingerSongs(String singerMid,
+      {int page = 1, int pageSize = 20}) async {
     final data = {
       "comm": {"ct": 24, "cv": 0},
       "singer": {
@@ -160,12 +170,14 @@ class Api extends BaseApi {
         "module": "music.web_singer_info_svr"
       }
     };
-    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg", body: data);
+    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg",
+        body: data);
     return SingerSongResult.fromJson(jsonDecode(resp));
   }
 
   // 排行榜
-  Future<ToplistResult?> getToplist({int id = 4, int page = 1, int pageSize = 100, String? period}) async {
+  Future<ToplistResult?> getToplist(
+      {int id = 4, int page = 1, int pageSize = 100, String? period}) async {
     final String postPeriod = period ?? DateTime.now().toString();
     final data = {
       "detail": {
@@ -180,7 +192,8 @@ class Api extends BaseApi {
       },
       "comm": {"ct": 24, "cv": 0}
     };
-    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg", body: data);
+    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg",
+        body: data);
     return ToplistResult.fromJson(jsonDecode(resp));
   }
 
@@ -196,7 +209,9 @@ class Api extends BaseApi {
       "onlysong": "0",
       "new_format": "1",
     };
-    final resp = await postAsync("https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg", body: data);
+    final resp = await postAsync(
+        "https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg",
+        body: data);
     return PlaylistResult.fromJson(jsonDecode(resp));
   }
 
@@ -218,19 +233,23 @@ class Api extends BaseApi {
       "needNewCode": "0",
     };
 
-    final resp = await postAsync("https://c.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg", body: data);
+    final resp = await postAsync(
+        "https://c.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg",
+        body: data);
     final jsonStr = _resolveRespJson(callBack, resp);
     return SongResult.fromJson(jsonDecode(jsonStr));
   }
 
   // 根据歌曲 ID 下载并解码 XML 歌词
   Future<QqLyricsResponse?> getLyricsAsync(String id) async {
-    final resp = await postAsync("https://c.y.qq.com/qqmusic/fcgi-bin/lyric_download.fcg", body: {
-      "version": "15",
-      "miniversion": "82",
-      "lrctype": "4",
-      "musicid": id,
-    });
+    final resp = await postAsync(
+        "https://c.y.qq.com/qqmusic/fcgi-bin/lyric_download.fcg",
+        body: {
+          "version": "15",
+          "miniversion": "82",
+          "lrctype": "4",
+          "musicid": id,
+        });
 
     final cleanedResp = resp.replaceAll("<!--", "").replaceAll("-->", "");
     final XmlDocument doc = XmlUtils.create(cleanedResp);
@@ -274,7 +293,8 @@ class Api extends BaseApi {
       }
     }
 
-    if ((result.lyrics?.isEmpty ?? true) && (result.trans?.isEmpty ?? true)) return null;
+    if ((result.lyrics?.isEmpty ?? true) && (result.trans?.isEmpty ?? true))
+      return null;
     return result;
   }
 
@@ -302,14 +322,21 @@ class Api extends BaseApi {
       "comm": {"uin": 0, "format": "json", "ct": 24, "cv": 0}
     };
 
-    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg", body: data);
+    final resp = await postJsonAsync("https://u.y.qq.com/cgi-bin/musicu.fcg",
+        body: data);
     final map = jsonDecode(resp) as Map<String, dynamic>;
     String link = "";
     try {
-      if ((map["code"] == 0) && (map["req"]["code"] == 0) && (map["req_0"]["code"] == 0)) {
+      if ((map["code"] == 0) &&
+          (map["req"]["code"] == 0) &&
+          (map["req_0"]["code"] == 0)) {
         final List<dynamic>? sip = map["req"]["data"]["sip"] as List<dynamic>?;
-        final List<dynamic>? midurlinfo = map["req_0"]["data"]["midurlinfo"] as List<dynamic>?;
-        if (sip != null && sip.isNotEmpty && midurlinfo != null && midurlinfo.isNotEmpty) {
+        final List<dynamic>? midurlinfo =
+            map["req_0"]["data"]["midurlinfo"] as List<dynamic>?;
+        if (sip != null &&
+            sip.isNotEmpty &&
+            midurlinfo != null &&
+            midurlinfo.isNotEmpty) {
           final purl = midurlinfo.first["purl"] as String?;
           if (purl != null) {
             link = sip.first + purl;

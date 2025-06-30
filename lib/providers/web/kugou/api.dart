@@ -13,8 +13,7 @@ class Api extends BaseApi {
     var response = await BaseApi.httpClient.get(Uri.parse(
         'http://mobilecdn.kugou.com/api/v3/search/song?format=json&keyword=$keywords&page=1&pagesize=20&showtype=1'));
     if (response.statusCode == 200) {
-      final resp =
-          SearchSongResponse.fromJson(jsonDecode(response.body));
+      final resp = SearchSongResponse.fromJson(jsonDecode(response.body));
       return resp;
     }
     return null;
@@ -30,10 +29,9 @@ class Api extends BaseApi {
     var response = await BaseApi.httpClient.get(Uri.parse(
         'https://lyrics.kugou.com/search?ver=1&man=yes&client=pc&keyword=$keywords$durationPara&hash=$hash'));
     if (response.statusCode == 200) {
-      final resp =
-          SearchLyricsResponse.fromJson(jsonDecode(response.body));
+      final resp = SearchLyricsResponse.fromJson(jsonDecode(response.body));
       return resp;
     }
     return null;
   }
-} 
+}

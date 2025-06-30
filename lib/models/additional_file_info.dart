@@ -36,22 +36,25 @@ class KrcAdditionalInfo extends GeneralAdditionalInfo {
 /// 适用于 Spotify 歌词的附加信息
 class SpotifyAdditionalInfo implements IAdditionalFileInfo {
   /// 默认构造函数
-  SpotifyAdditionalInfo() : 
-    provider = null,
-    providerLyricsId = null,
-    providerDisplayName = null,
-    lyricsLanguage = null;
+  SpotifyAdditionalInfo()
+      : provider = null,
+        providerLyricsId = null,
+        providerDisplayName = null,
+        lyricsLanguage = null;
 
   /// 从 SpotifyLyrics 对象创建
-  SpotifyAdditionalInfo.fromSpotifyLyrics(dynamic lyrics) : 
-    provider = lyrics.provider,
-    providerLyricsId = lyrics.providerLyricsId,
-    providerDisplayName = lyrics.providerDisplayName,
-    lyricsLanguage = (lyrics.language != null && lyrics.language.isNotEmpty) ? lyrics.language : null;
+  SpotifyAdditionalInfo.fromSpotifyLyrics(dynamic lyrics)
+      : provider = lyrics.provider,
+        providerLyricsId = lyrics.providerLyricsId,
+        providerDisplayName = lyrics.providerDisplayName,
+        lyricsLanguage = (lyrics.language != null && lyrics.language.isNotEmpty)
+            ? lyrics.language
+            : null;
 
   /// 使用提供者、歌词ID和显示名称创建
-  SpotifyAdditionalInfo.create(this.provider, this.providerLyricsId, this.providerDisplayName) :
-    lyricsLanguage = null;
+  SpotifyAdditionalInfo.create(
+      this.provider, this.providerLyricsId, this.providerDisplayName)
+      : lyricsLanguage = null;
 
   /// 使用提供者、歌词ID、显示名称和语言创建
   SpotifyAdditionalInfo.withLanguage(
@@ -80,4 +83,4 @@ class SpotifyAdditionalInfo implements IAdditionalFileInfo {
         'providerDisplayName': providerDisplayName,
         'lyricsLanguage': lyricsLanguage,
       };
-} 
+}

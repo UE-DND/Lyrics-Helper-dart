@@ -13,7 +13,7 @@ class MathHelper {
     if (b == null) return a;
     return a > b ? a : b;
   }
-  
+
   /// 如果 x 大于零，则返回 x，否则返回零
   static int greaterThanZero(int x) {
     return x < 0 ? 0 : x;
@@ -51,7 +51,7 @@ extension IntExtensions on int {
       a = b;
       b = temp;
     }
-    
+
     if (!containEdge) {
       return this < b && this > a;
     }
@@ -68,10 +68,10 @@ extension DoubleExtensions on double {
       a = b;
       b = temp;
     }
-    
+
     if (!containEdge) {
       return this < b && this > a;
     }
     return this <= b && this >= a;
   }
-} 
+}

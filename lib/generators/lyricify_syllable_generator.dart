@@ -6,7 +6,7 @@ import '../models/i_line_info.dart';
 /// Lyricify Syllable 歌词生成器
 class LyricifySyllableGenerator {
   /// 生成 Lyricify Syllable 字符串
-  /// 
+  ///
   /// [lyricsData] 用于生成的源歌词数据
   /// 返回生成出的 Lyricify Syllable 字符串
   static String generate(LyricsData lyricsData) {
@@ -14,12 +14,12 @@ class LyricifySyllableGenerator {
 
     final sb = StringBuffer();
     final lines = lyricsData.lines!;
-    
+
     for (int i = 0; i < lines.length; i++) {
       if (lines[i] is SyllableLineInfo) {
         final line = lines[i] as SyllableLineInfo;
         _appendLine(sb, line);
-        
+
         if (line.subLine is SyllableLineInfo) {
           _appendLine(sb, line.subLine as SyllableLineInfo, true);
         }
@@ -30,7 +30,8 @@ class LyricifySyllableGenerator {
   }
 
   // 添加一行歌词
-  static void _appendLine(StringBuffer sb, SyllableLineInfo line, [bool isSubLine = false]) {
+  static void _appendLine(StringBuffer sb, SyllableLineInfo line,
+      [bool isSubLine = false]) {
     // 添加属性信息
     sb.write('[');
     sb.write(isSubLine
@@ -56,7 +57,7 @@ class LyricifySyllableGenerator {
         }
       }
     }
-    
+
     sb.writeln();
   }
 
@@ -69,4 +70,4 @@ class LyricifySyllableGenerator {
     sb.write(item.duration);
     sb.write(')');
   }
-} 
+}

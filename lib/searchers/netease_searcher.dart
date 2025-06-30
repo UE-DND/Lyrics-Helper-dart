@@ -20,7 +20,8 @@ class NeteaseSearcher extends Searcher implements ISearcher {
   bool _useNewSearchFirst = false;
 
   @override
-  Future<List<ISearchResult>?> searchForResultsByString(String searchString) async {
+  Future<List<ISearchResult>?> searchForResultsByString(
+      String searchString) async {
     var search = <ISearchResult>[];
 
     dynamic result;
@@ -30,7 +31,8 @@ class NeteaseSearcher extends Searcher implements ISearcher {
       } catch (e) {
         _useNewSearchFirst = !_useNewSearchFirst;
         try {
-          result = await Providers.neteaseApi.search(searchString, SearchType.song);
+          result =
+              await Providers.neteaseApi.search(searchString, SearchType.song);
           if (result?.code == -460) throw Exception();
         } catch (e) {
           _useNewSearchFirst = !_useNewSearchFirst;
@@ -38,7 +40,8 @@ class NeteaseSearcher extends Searcher implements ISearcher {
       }
     } else {
       try {
-        result = await Providers.neteaseApi.search(searchString, SearchType.song);
+        result =
+            await Providers.neteaseApi.search(searchString, SearchType.song);
         if (result?.code == -460) throw Exception();
       } catch (e) {
         _useNewSearchFirst = !_useNewSearchFirst;
@@ -72,4 +75,4 @@ class NeteaseSearcher extends Searcher implements ISearcher {
 
     return search;
   }
-} 
+}

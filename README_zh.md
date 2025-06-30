@@ -58,7 +58,7 @@ final data = ParseHelper.parseLyrics(rawText, LyricsRawTypes.lrc);
 lib/                 – 核心库代码
 bin/                 – 命令行示例 / 工具
 test/                – 单元测试（如有）
-.github/             – CI / 模板
+.github/             – CI
 README*.md           – 文档
 ```
 

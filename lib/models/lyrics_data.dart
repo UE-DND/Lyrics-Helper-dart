@@ -26,9 +26,10 @@ class LyricsData {
           return e.toString();
         }).toList(),
         'writers': writers,
-        'trackMetadata': trackMetadata == null ? null : (trackMetadata as dynamic).toJson(),
+        'trackMetadata':
+            trackMetadata == null ? null : (trackMetadata as dynamic).toJson(),
       };
 
   @override
   String toString() => toJson().toString();
-} 
+}

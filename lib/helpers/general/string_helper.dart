@@ -5,7 +5,7 @@ class StringHelper {
     if (text.isEmpty) {
       return text;
     }
-    
+
     if (text.startsWith('(') && text.endsWith(')')) {
       return text.substring(1, text.length - 1);
     }
@@ -15,14 +15,16 @@ class StringHelper {
   /// 比较两个字符串是否相等，null、空字符串判断为相等
   static bool isSame(String? str1, String? str2) {
     if (str1 == str2) return true;
-    if ((str1 == null || str1.isEmpty) && (str2 == null || str2.isEmpty)) return true;
+    if ((str1 == null || str1.isEmpty) && (str2 == null || str2.isEmpty))
+      return true;
     return false;
   }
 
   /// 比较两个字符串是否相等，null、空字符串、空格字符串判断为相等
   static bool isSameWhiteSpace(String? str1, String? str2) {
     if (str1 == str2) return true;
-    if ((str1 == null || str1.trim().isEmpty) && (str2 == null || str2.trim().isEmpty)) return true;
+    if ((str1 == null || str1.trim().isEmpty) &&
+        (str2 == null || str2.trim().isEmpty)) return true;
     return false;
   }
 
@@ -36,11 +38,12 @@ class StringHelper {
   }
 
   /// 将毫秒数转换为时间戳字符串
-  /// 
+  ///
   /// [timeMs] 毫秒数
   /// [millisecond] 字符串中是否保留毫秒位
   /// 返回时间戳字符串
-  static String formatTimeMsToTimestampString(int timeMs, {bool millisecond = true}) {
+  static String formatTimeMsToTimestampString(int timeMs,
+      {bool millisecond = true}) {
     if (timeMs < 0) {
       return "0:00";
     }
@@ -51,7 +54,7 @@ class StringHelper {
       minute = second ~/ 60;
       second %= 60;
     }
-    
+
     if (millisecond) {
       return "${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}.${(timeMs % 1000).toString().padLeft(3, '0')}";
     } else {
@@ -60,7 +63,7 @@ class StringHelper {
   }
 
   /// 获取字符串的毫秒数
-  /// 
+  ///
   /// [time] 时长字符串
   /// 返回毫秒数，解析失败返回 null
   static int? getMillisecondsFromString(String time) {
@@ -81,13 +84,13 @@ class StringHelper {
           final minutes = int.parse(times[0]);
           String secondsStr = times[1];
           double seconds;
-          
+
           if (secondsStr.contains('.')) {
             seconds = double.parse(secondsStr);
           } else {
             seconds = int.parse(secondsStr).toDouble();
           }
-          
+
           timeTotal = (minutes * 60 * 1000 + seconds * 1000).round();
           return timeTotal;
         }
@@ -139,23 +142,23 @@ class StringHelper {
   /// 首字母大写
   static String toUpperFirst(String str, {int start = 0}) {
     if (str.isEmpty || start >= str.length) return str;
-    return str.substring(0, start) + 
-           str[start].toUpperCase() + 
-           (start + 1 < str.length ? str.substring(start + 1) : '');
+    return str.substring(0, start) +
+        str[start].toUpperCase() +
+        (start + 1 < str.length ? str.substring(start + 1) : '');
   }
 
   /// 提取两个字符串之间的内容
   static String between(String str, String start, String end) {
     if (str.isEmpty) return '';
-    
+
     final startIndex = str.indexOf(start);
     if (startIndex == -1) return '';
-    
+
     final startPos = startIndex + start.length;
     final endIndex = str.indexOf(end, startPos);
-    
+
     if (endIndex == -1) return '';
-    
+
     return str.substring(startPos, endIndex);
   }
 
@@ -178,7 +181,8 @@ class StringHelper {
 
   /// 计算文本相似度 (适用于短文本)
   /// 返回 0-100
-  static double computeTextSame(String textX, String textY, {bool isCase = false}) {
+  static double computeTextSame(String textX, String textY,
+      {bool isCase = false}) {
     if (textX.isEmpty || textY.isEmpty) {
       return 0;
     }
@@ -195,9 +199,8 @@ class StringHelper {
         if (textX[i] == textY[j]) {
           dp[i + 1][j + 1] = dp[i][j] + 1;
         } else {
-          dp[i + 1][j + 1] = dp[i][j + 1] > dp[i + 1][j]
-              ? dp[i][j + 1]
-              : dp[i + 1][j];
+          dp[i + 1][j + 1] =
+              dp[i][j + 1] > dp[i + 1][j] ? dp[i][j + 1] : dp[i + 1][j];
         }
       }
     }
@@ -277,4 +280,4 @@ extension StringExtensions on String {
   bool isNumber() {
     return StringHelper.isNumber(this);
   }
-} 
+}

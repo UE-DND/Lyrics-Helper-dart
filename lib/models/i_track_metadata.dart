@@ -27,4 +27,4 @@ abstract class ITrackMetadata {
   /// 歌词语言列表
   List<String>? get language;
   set language(List<String>? value);
-} 
+}

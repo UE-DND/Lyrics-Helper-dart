@@ -10,7 +10,15 @@ class MusixmatchSearchResult implements ISearchResult {
   @override
   ISearcher get searcher => MusixmatchSearcher();
 
-  MusixmatchSearchResult(String title, List<String> artists, String album, List<String>? albumArtists, int durationMs, int id, String isrc, String vanityId) {
+  MusixmatchSearchResult(
+      String title,
+      List<String> artists,
+      String album,
+      List<String>? albumArtists,
+      int durationMs,
+      int id,
+      String isrc,
+      String vanityId) {
     _title = title;
     _artists = artists;
     _album = album;
@@ -21,16 +29,19 @@ class MusixmatchSearchResult implements ISearchResult {
     _vanityId = vanityId;
   }
 
-  MusixmatchSearchResult.fromTrack(Track track) : this(
-    track.trackName ?? "",
-    (track.artistName ?? "").split(RegExp(r" feat. | & ")).where((s) => s.isNotEmpty).toList(),
-    track.albumName ?? "",
-    null,
-    track.trackLength != null ? track.trackLength! * 1000 : 0,
-    track.trackId,
-    track.trackIsrc ?? "",
-    track.albumVanityId ?? ""
-  );
+  MusixmatchSearchResult.fromTrack(Track track)
+      : this(
+            track.trackName ?? "",
+            (track.artistName ?? "")
+                .split(RegExp(r" feat. | & "))
+                .where((s) => s.isNotEmpty)
+                .toList(),
+            track.albumName ?? "",
+            null,
+            track.trackLength != null ? track.trackLength! * 1000 : 0,
+            track.trackId,
+            track.trackIsrc ?? "",
+            track.albumVanityId ?? "");
 
   late final String _title;
   @override
@@ -76,4 +87,4 @@ class MusixmatchSearchResult implements ISearchResult {
   void setMatchType(CompareMatchType? matchType) {
     _matchType = matchType;
   }
-} 
+}

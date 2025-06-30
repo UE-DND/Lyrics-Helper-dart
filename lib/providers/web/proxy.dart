@@ -9,7 +9,8 @@ class Proxy {
   Proxy._();
 
   /// 设置代理
-  static void setProxy(String host, int port, {String? username, String? password}) {
+  static void setProxy(String host, int port,
+      {String? username, String? password}) {
     final innerClient = HttpClient();
     innerClient.findProxy = (uri) => "PROXY $host:$port";
 
@@ -49,4 +50,4 @@ void disableProxy() => Proxy.disableProxy();
 
 /// 清除代理设定（兼容旧调用）
 @Deprecated('Use Proxy.clearProxy instead')
-void clearProxy() => Proxy.clearProxy(); 
+void clearProxy() => Proxy.clearProxy();

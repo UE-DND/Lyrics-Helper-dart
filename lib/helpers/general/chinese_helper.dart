@@ -18,6 +18,7 @@ class ChineseHelper {
     '仅': '僅',
     '优': '優',
     '-': '-', // 确保特殊字符处理
+    '现': '現',
   };
 
   // 自动生成的繁体到简体映射表
@@ -68,4 +69,4 @@ extension ChineseStringExtensions on String {
 
   /// 转简体
   String toSC({bool force = false}) => ChineseHelper.toSC(this, force: force);
-} 
+}

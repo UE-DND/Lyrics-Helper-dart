@@ -63,8 +63,7 @@ class CompareHelper {
     nullCount += albumMatch == null ? 0.4 : 0;
     nullCount += albumArtistMatch == null ? 0.2 : 0;
     nullCount += durationMatch == null ? 1 : 0;
-    final adjustedScore =
-        totalScore * fullScore / (fullScore - nullCount * 7);
+    final adjustedScore = totalScore * fullScore / (fullScore - nullCount * 7);
 
     return _toMatchType(adjustedScore);
   }
@@ -79,4 +78,4 @@ class CompareHelper {
     if (score > 3) return CompareMatchType.veryLow;
     return CompareMatchType.noMatch;
   }
-} 
+}

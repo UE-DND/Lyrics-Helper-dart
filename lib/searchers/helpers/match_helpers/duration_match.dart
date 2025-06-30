@@ -5,7 +5,10 @@ class DurationMatchHelper {
   /// [duration1] 原曲目的时长（毫秒）
   /// [duration2] 搜索结果的时长（毫秒）
   static DurationMatchType? compareDuration(int? duration1, int? duration2) {
-    if (duration1 == null || duration2 == null || duration1 == 0 || duration2 == 0) {
+    if (duration1 == null ||
+        duration2 == null ||
+        duration1 == 0 ||
+        duration2 == 0) {
       return null;
     }
 
@@ -55,4 +58,4 @@ extension DurationMatchScore on DurationMatchType? {
         return 0;
     }
   }
-} 
+}

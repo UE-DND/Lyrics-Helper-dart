@@ -119,7 +119,7 @@ SearchResultData _$SearchResultDataFromJson(Map<String, dynamic> json) =>
 
 Song _$SongFromJson(Map<String, dynamic> json) => Song(
       name: json['name'] as String,
-      id: json['id'].toString(),
+      id: _dynamicToString(json['id']),
       artists: (json['ar'] as List<dynamic>?)
           ?.map((e) => ArtistMini.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -200,19 +200,19 @@ SongUrls _$SongUrlsFromJson(Map<String, dynamic> json) => SongUrls(
     );
 
 Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
-      id: json['id'].toString(),
+      id: _dynamicToString(json['id']),
       url: json['url'] as String?,
-      br: json['br'] as int?,
-      size: json['size'] as int?,
+      br: (json['br'] as num?)?.toInt(),
+      size: (json['size'] as num?)?.toInt(),
       md5: json['md5'] as String?,
-      code: json['code'] as int?,
-      expi: json['expi'] as int?,
+      code: (json['code'] as num?)?.toInt(),
+      expi: (json['expi'] as num?)?.toInt(),
       type: json['type'] as String?,
       gain: (json['gain'] as num?)?.toDouble(),
-      fee: json['fee'] as int?,
+      fee: (json['fee'] as num?)?.toInt(),
       uf: json['uf'],
-      payed: json['payed'] as int?,
-      flag: json['flag'] as int?,
+      payed: (json['payed'] as num?)?.toInt(),
+      flag: (json['flag'] as num?)?.toInt(),
       canExtend: json['canExtend'] as bool?,
     );
 
@@ -227,20 +227,20 @@ DetailResult _$DetailResultFromJson(Map<String, dynamic> json) => DetailResult(
     );
 
 Privilege _$PrivilegeFromJson(Map<String, dynamic> json) => Privilege(
-      id: json['id'].toString(),
-      fee: json['fee'] as int?,
-      payed: json['payed'] as int?,
-      st: json['st'] as int?,
-      pl: json['pl'] as int?,
-      dl: json['dl'] as int?,
-      sp: json['sp'] as int?,
-      cp: json['cp'] as int?,
-      subp: json['subp'] as int?,
+      id: _dynamicToString(json['id']),
+      fee: (json['fee'] as num?)?.toInt(),
+      payed: (json['payed'] as num?)?.toInt(),
+      st: (json['st'] as num?)?.toInt(),
+      pl: (json['pl'] as num?)?.toInt(),
+      dl: (json['dl'] as num?)?.toInt(),
+      sp: (json['sp'] as num?)?.toInt(),
+      cp: (json['cp'] as num?)?.toInt(),
+      subp: (json['subp'] as num?)?.toInt(),
       cs: json['cs'] as bool?,
-      maxbr: json['maxbr'] as int?,
-      fl: json['fl'] as int?,
+      maxbr: (json['maxbr'] as num?)?.toInt(),
+      fl: (json['fl'] as num?)?.toInt(),
       toast: json['toast'] as bool?,
-      flag: json['flag'] as int?,
+      flag: (json['flag'] as num?)?.toInt(),
     );
 
 LyricUser _$LyricUserFromJson(Map<String, dynamic> json) => LyricUser(

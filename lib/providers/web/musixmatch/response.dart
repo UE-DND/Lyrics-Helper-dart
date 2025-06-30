@@ -309,8 +309,13 @@ class RankColors {
   final String? rankColor100;
   @JsonKey(name: 'rank_color_200')
   final String? rankColor200;
-  RankColors({this.rankColor10, this.rankColor50, this.rankColor100, this.rankColor200});
-  factory RankColors.fromJson(Map<String, dynamic> json) => _$RankColorsFromJson(json);
+  RankColors(
+      {this.rankColor10,
+      this.rankColor50,
+      this.rankColor100,
+      this.rankColor200});
+  factory RankColors.fromJson(Map<String, dynamic> json) =>
+      _$RankColorsFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -400,7 +405,8 @@ class Counters {
     this.lyricsReportContainMistakes,
   });
 
-  factory Counters.fromJson(Map<String, dynamic> json) => _$CountersFromJson(json);
+  factory Counters.fromJson(Map<String, dynamic> json) =>
+      _$CountersFromJson(json);
 }
 
 //-=-=-=-=-=-=-= Common Models =-=-=-=-=-=-=-
@@ -799,7 +805,8 @@ class MissionManagerCategories {
   final List<UserGroup>? userGroups;
   @JsonKey(name: 'rewards')
   final List<Reward>? rewards;
-  MissionManagerCategories({this.taskTypes, this.audioSources, this.userGroups, this.rewards});
+  MissionManagerCategories(
+      {this.taskTypes, this.audioSources, this.userGroups, this.rewards});
   factory MissionManagerCategories.fromJson(Map<String, dynamic> json) =>
       _$MissionManagerCategoriesFromJson(json);
 }
@@ -844,8 +851,7 @@ class Reward {
   @JsonKey(name: 'value')
   final String? value;
   Reward({this.label, this.value});
-  factory Reward.fromJson(Map<String, dynamic> json) =>
-      _$RewardFromJson(json);
+  factory Reward.fromJson(Map<String, dynamic> json) => _$RewardFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -910,7 +916,8 @@ class Service {
     this.locker,
     this.deeplink,
   });
-  factory Service.fromJson(Map<String, dynamic> json) => _$ServiceFromJson(json);
+  factory Service.fromJson(Map<String, dynamic> json) =>
+      _$ServiceFromJson(json);
 }
 
 @JsonSerializable(createToJson: false)
@@ -999,4 +1006,4 @@ class Location {
   });
   factory Location.fromJson(Map<String, dynamic> json) =>
       _$LocationFromJson(json);
-} 
+}

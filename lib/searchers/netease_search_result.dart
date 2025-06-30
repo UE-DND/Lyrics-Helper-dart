@@ -11,7 +11,8 @@ class NeteaseSearchResult implements ISearchResult {
   @override
   ISearcher get searcher => NeteaseSearcher();
 
-  NeteaseSearchResult(String title, List<String> artists, String album, List<String>? albumArtists, int durationMs, String id) {
+  NeteaseSearchResult(String title, List<String> artists, String album,
+      List<String>? albumArtists, int durationMs, String id) {
     _title = title;
     _artists = artists;
     _album = album;
@@ -20,23 +21,24 @@ class NeteaseSearchResult implements ISearchResult {
     _id = id;
   }
 
-  NeteaseSearchResult.fromSong(Song song) : this(
-    song.name ?? "",
-    song.artists?.map((s) => s.name ?? "").toList() ?? [],
-    song.album?.name ?? "",
-    null,
-    song.duration ?? 0,
-    song.id ?? ""
-  );
+  NeteaseSearchResult.fromSong(Song song)
+      : this(
+            song.name ?? "",
+            song.artists?.map((s) => s.name ?? "").toList() ?? [],
+            song.album?.name ?? "",
+            null,
+            song.duration ?? 0,
+            song.id ?? "");
 
-  NeteaseSearchResult.fromEapiSong(EapiSong song) : this(
-    song.name,
-    song.artists?.map((s) => s.name).toList() ?? [],
-    song.album?.name ?? "",
-    null,
-    song.duration,
-    song.id.toString(),
-  );
+  NeteaseSearchResult.fromEapiSong(EapiSong song)
+      : this(
+          song.name,
+          song.artists?.map((s) => s.name).toList() ?? [],
+          song.album?.name ?? "",
+          null,
+          song.duration,
+          song.id.toString(),
+        );
 
   // 根据动态类型创建
   factory NeteaseSearchResult.fromDynamic(dynamic track) {
@@ -99,4 +101,4 @@ class NeteaseSearchResult implements ISearchResult {
         'id': _id,
         'matchType': _matchType?.toString(),
       };
-} 
+}

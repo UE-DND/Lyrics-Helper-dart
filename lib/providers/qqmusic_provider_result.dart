@@ -8,4 +8,4 @@ class QQMusicProviderResult implements IProviderResult {
 
   @override
   ISearchResult get searchResult => throw UnimplementedError();
-} 
+}

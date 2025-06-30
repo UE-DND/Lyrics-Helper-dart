@@ -4,12 +4,11 @@ import '../models/i_line_info.dart';
 /// Lyricify Lines 歌词生成器
 class LyricifyLinesGenerator {
   /// 生成 Lyricify Lines 字符串
-  /// 
+  ///
   /// [lyricsData] 用于生成的源歌词数据
   /// [subLinesOutputType] 子行的输出方式
   /// 返回生成出的 Lyricify Lines 字符串
-  static String generate(
-      LyricsData lyricsData, 
+  static String generate(LyricsData lyricsData,
       {SubLinesOutputType subLinesOutputType = SubLinesOutputType.inMainLine}) {
     if (lyricsData.lines == null || lyricsData.lines!.isEmpty) return '';
 
@@ -19,11 +18,11 @@ class LyricifyLinesGenerator {
       var line = lines[i];
       if (subLinesOutputType == SubLinesOutputType.inDiffLine) {
         _appendLine(sb, line);
-        if (line.subLine != null)
-          _appendLine(sb, line.subLine!);
+        if (line.subLine != null) _appendLine(sb, line.subLine!);
       } else {
         if (line.startTimeWithSubLine != null)
-          sb.writeln('[${line.startTimeWithSubLine},${line.endTimeWithSubLine ?? 0}]${line.fullText}');
+          sb.writeln(
+              '[${line.startTimeWithSubLine},${line.endTimeWithSubLine ?? 0}]${line.fullText}');
       }
     }
 
@@ -44,4 +43,4 @@ enum SubLinesOutputType {
 
   /// 子行单独成行
   inDiffLine,
-} 
+}

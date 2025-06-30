@@ -57,7 +57,7 @@ final data = ParseHelper.parseLyrics(rawText, LyricsRawTypes.lrc);
 lib/                 – Core library code
 bin/                 – Command-line demo & utilities
 test/                – Tests (if any)
-.github/             – CI / templates
+.github/             – CI
 README*.md           – Documentation
 ```
 

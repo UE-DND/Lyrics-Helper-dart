@@ -22,7 +22,8 @@ class LyricifySyllableParser {
         ..syncTypes = SyncTypes.syllableSynced
         ..additionalInfo = (GeneralAdditionalInfo()..attributes = []));
 
-    var offset = AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
+    var offset =
+        AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
     var lines = _parseLyrics(lyricsLines, offset);
     data.lines = lines;
     return data;
@@ -43,27 +44,35 @@ class LyricifySyllableParser {
     return newList;
   }
 
-  static List<ILineInfo> _setBackgroundVocalsInfo(List<_SyllableLineInfoWithSubLineState> list) {
+  static List<ILineInfo> _setBackgroundVocalsInfo(
+      List<_SyllableLineInfoWithSubLineState> list) {
     for (int i = 1; i < list.length; i++) {
       if (list[i].isBackgroundVocals == true) {
-        list[i - 1].subLine = _SyllableLineInfoWithSubLineState.getSyllableLineInfo(list[i]);
+        list[i - 1].subLine =
+            _SyllableLineInfoWithSubLineState.getSyllableLineInfo(list[i]);
         list.removeAt(i--);
       }
     }
     bool isNotBackgroundVocals(_SyllableLineInfoWithSubLineState line) =>
-        (line.isBackgroundVocals == null && !line.isBracketedLyrics) || line.isBackgroundVocals == false;
+        (line.isBackgroundVocals == null && !line.isBracketedLyrics) ||
+        line.isBackgroundVocals == false;
 
     for (int i = 1; i < list.length; i++) {
-      if (i + 1 < list.length && list[i].isBackgroundVocals == null && list[i].isBracketedLyrics) {
+      if (i + 1 < list.length &&
+          list[i].isBackgroundVocals == null &&
+          list[i].isBracketedLyrics) {
         if (isNotBackgroundVocals(list[i - 1]) && list[i - 1].subLine == null) {
           if (isNotBackgroundVocals(list[i + 1])) {
-            list[i - 1].subLine = _SyllableLineInfoWithSubLineState.getSyllableLineInfo(list[i]);
+            list[i - 1].subLine =
+                _SyllableLineInfoWithSubLineState.getSyllableLineInfo(list[i]);
             list.removeAt(i--);
           }
         }
       }
     }
-    return list.map((e) => _SyllableLineInfoWithSubLineState.getSyllableLineInfo(e)).toList();
+    return list
+        .map((e) => _SyllableLineInfoWithSubLineState.getSyllableLineInfo(e))
+        .toList();
   }
 
   static _SyllableLineInfoWithSubLineState? _parseLyricsLine(String line) {
@@ -116,11 +125,13 @@ class _SyllableLineInfoWithSubLineState extends SyllableLineInfo {
   bool? isBackgroundVocals;
 
   bool get isBracketedLyrics =>
-      (text.startsWith("(") || text.startsWith("（")) && (text.endsWith(")") || text.endsWith("）"));
+      (text.startsWith("(") || text.startsWith("（")) &&
+      (text.endsWith(")") || text.endsWith("）"));
 
-  static SyllableLineInfo getSyllableLineInfo(_SyllableLineInfoWithSubLineState state) {
+  static SyllableLineInfo getSyllableLineInfo(
+      _SyllableLineInfoWithSubLineState state) {
     return SyllableLineInfo.fromSyllables(state.syllables)
       ..lyricsAlignment = state.lyricsAlignment
       ..subLine = state.subLine;
   }
-} 
+}

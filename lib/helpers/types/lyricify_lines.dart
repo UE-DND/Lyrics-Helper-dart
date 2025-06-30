@@ -16,4 +16,4 @@ class LyricifyLines {
 
     return false;
   }
-} 
+}

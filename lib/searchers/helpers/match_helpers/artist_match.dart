@@ -1,7 +1,7 @@
 import '../../../helpers/general/chinese_helper.dart';
 
 /// 艺人匹配工具，移植自 C# `ArtistMatch.cs`。
-/// 
+///
 /// 该实现与原版算法保持一致，仅做 Dart 语法层面的调整。
 class ArtistMatchHelper {
   /// 比较艺人匹配程度
@@ -15,8 +15,10 @@ class ArtistMatchHelper {
   ) {
     if (artist1 == null || artist2 == null) return null;
 
-    final list1 = artist1.map((e) => e.toLowerCase().toSC(force: true)).toList();
-    final list2 = artist2.map((e) => e.toLowerCase().toSC(force: true)).toList();
+    final list1 =
+        artist1.map((e) => e.toLowerCase().toSC(force: true)).toList();
+    final list2 =
+        artist2.map((e) => e.toLowerCase().toSC(force: true)).toList();
 
     // 统计匹配数量
     var count = 0;
@@ -42,9 +44,7 @@ class ArtistMatchHelper {
       return ArtistMatchType.veryHigh;
     }
 
-    if (list1.length > 7 &&
-        list2.length > 7 &&
-        count / list1.length > 0.66) {
+    if (list1.length > 7 && list2.length > 7 && count / list1.length > 0.66) {
       return ArtistMatchType.high;
     }
 
@@ -110,4 +110,4 @@ extension ArtistMatchScore on ArtistMatchType? {
         return 0;
     }
   }
-} 
+}

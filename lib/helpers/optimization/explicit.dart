@@ -42,7 +42,9 @@ class Explicit {
           if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
             i += 2;
             continue;
-          } else if (i + 3 < str.length && str[i + 3] != ' ' && str[i + 3] != '-') {
+          } else if (i + 3 < str.length &&
+              str[i + 3] != ' ' &&
+              str[i + 3] != '-') {
             i += 2;
             continue;
           }
@@ -56,7 +58,9 @@ class Explicit {
           if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
             i += 2;
             continue;
-          } else if (i + 3 < str.length && str[i + 3] != ' ' && str[i + 3] != '-') {
+          } else if (i + 3 < str.length &&
+              str[i + 3] != ' ' &&
+              str[i + 3] != '-') {
             i += 2;
             continue;
           }
@@ -70,7 +74,9 @@ class Explicit {
           if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
             i += 2;
             continue;
-          } else if (i + 3 < str.length && str[i + 3] != ' ' && str[i + 3] != '-') {
+          } else if (i + 3 < str.length &&
+              str[i + 3] != ' ' &&
+              str[i + 3] != '-') {
             i += 2;
             continue;
           }
@@ -112,7 +118,9 @@ class Explicit {
           if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
             i += 2;
             continue;
-          } else if (i + 3 < str.length && str[i + 3] != ' ' && str[i + 3] != '-') {
+          } else if (i + 3 < str.length &&
+              str[i + 3] != ' ' &&
+              str[i + 3] != '-') {
             i += 2;
             continue;
           }
@@ -126,7 +134,9 @@ class Explicit {
           if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
             i += 2;
             continue;
-          } else if (i + 3 < str.length && str[i + 3] != ' ' && str[i + 3] != '-') {
+          } else if (i + 3 < str.length &&
+              str[i + 3] != ' ' &&
+              str[i + 3] != '-') {
             i += 2;
             continue;
           }
@@ -140,7 +150,9 @@ class Explicit {
           if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
             i += 2;
             continue;
-          } else if (i + 3 < str.length && str[i + 3] != ' ' && str[i + 3] != '-') {
+          } else if (i + 3 < str.length &&
+              str[i + 3] != ' ' &&
+              str[i + 3] != '-') {
             i += 2;
             continue;
           }
@@ -154,7 +166,8 @@ class Explicit {
 
   static String fixExplicit(String str) {
     for (var replacement in _replacements) {
-      str = str.replaceAllMapped(RegExp(replacement.pattern, caseSensitive: false), (match) {
+      str = str.replaceAllMapped(
+          RegExp(replacement.pattern, caseSensitive: false), (match) {
         String original = match.group(0)!;
         String replaced = replacement.replacement;
         return original[0].toUpperCase() == original[0]
@@ -195,4 +208,4 @@ class Explicit {
     (pattern: "c\\*{4}e", replacement: "cocaine"),
     (pattern: "d\\*{2}g", replacement: "drug")
   ];
-} 
+}

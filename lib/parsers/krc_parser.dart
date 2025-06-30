@@ -27,7 +27,8 @@ class KrcParser {
       ..trackMetadata = TrackMetadata();
 
     var lyricsLines = _getSplitedKrc(krc).toList();
-    var offset = AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
+    var offset =
+        AttributesHelper.parseGeneralAttributesToLyricsData(data, lyricsLines);
     var lyrics = _parseLyrics(lyricsLines, offset);
 
     // 翻译处理（仅当歌词中带有 [language:...] 信息时）
@@ -115,22 +116,24 @@ class KrcParser {
       final parts = line.split(']');
       final timeParts = parts[0].substring(1).split(',');
       final lineStart = int.parse(timeParts[0]);
-      
+
       final wordParts = parts[1].split(RegExp(r'<[0-9]'));
       if (wordParts.isEmpty) return null;
 
       var syllables = <ISyllableInfo>[];
-      
+
       for (var wordPart in wordParts) {
-          if (wordPart.isEmpty) continue;
-          final timeMatches = RegExp(r'(\d+),(\d+),(\d+)>(.*)').firstMatch(wordPart);
-          if (timeMatches == null) continue;
+        if (wordPart.isEmpty) continue;
+        final timeMatches =
+            RegExp(r'(\d+),(\d+),(\d+)>(.*)').firstMatch(wordPart);
+        if (timeMatches == null) continue;
 
-          final start = int.parse(timeMatches.group(1)!);
-          final duration = int.parse(timeMatches.group(2)!);
-          final text = timeMatches.group(4) ?? '';
+        final start = int.parse(timeMatches.group(1)!);
+        final duration = int.parse(timeMatches.group(2)!);
+        final text = timeMatches.group(4) ?? '';
 
-          syllables.add(SyllableInfo.create(text, lineStart + start, lineStart + start + duration));
+        syllables.add(SyllableInfo.create(
+            text, lineStart + start, lineStart + start + duration));
       }
       return SyllableLineInfo.fromSyllables(syllables);
     } catch (e) {
@@ -148,7 +151,8 @@ class KrcTranslationParser {
     try {
       final language = krc.between('[language:', ']');
       final decode = utf8.decode(base64.decode(language));
-      final translation = KugouTranslation.fromJson(json.decode(decode) as Map<String, dynamic>);
+      final translation = KugouTranslation.fromJson(
+          json.decode(decode) as Map<String, dynamic>);
       return (translation.content?.isNotEmpty ?? false);
     } catch (_) {
       return false;
@@ -160,7 +164,8 @@ class KrcTranslationParser {
     try {
       final language = krc.between('[language:', ']');
       final decode = utf8.decode(base64.decode(language));
-      final translation = KugouTranslation.fromJson(json.decode(decode) as Map<String, dynamic>);
+      final translation = KugouTranslation.fromJson(
+          json.decode(decode) as Map<String, dynamic>);
       if (translation.content?.isEmpty ?? true) return null;
       final content = translation.content?.firstWhere(
         (t) => t.type == 1,
@@ -178,7 +183,8 @@ class KrcTranslationParser {
     try {
       final language = krc.between('[language:', ']');
       final decode = utf8.decode(base64.decode(language));
-      return KugouTranslation.fromJson(json.decode(decode) as Map<String, dynamic>);
+      return KugouTranslation.fromJson(
+          json.decode(decode) as Map<String, dynamic>);
     } catch (_) {
       return null;
     }

@@ -11,4 +11,4 @@ abstract class Provider implements IProvider {
 
   /// 获取歌词
   Future<IProviderResult> obtainLyrics();
-} 
+}

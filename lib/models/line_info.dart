@@ -28,19 +28,21 @@ class LineInfo implements ILineInfo {
   int? endTime;
 
   @override
-  int? get duration => endTime != null && startTime != null ? endTime! - startTime! : null;
+  int? get duration =>
+      endTime != null && startTime != null ? endTime! - startTime! : null;
 
   @override
-  int? get startTimeWithSubLine => MathHelper.min(startTime, subLine?.startTime);
+  int? get startTimeWithSubLine =>
+      MathHelper.min(startTime, subLine?.startTime);
 
   @override
   int? get endTimeWithSubLine => MathHelper.max(endTime, subLine?.endTime);
 
   @override
-  int? get durationWithSubLine => 
-    endTimeWithSubLine != null && startTimeWithSubLine != null 
-      ? endTimeWithSubLine! - startTimeWithSubLine!
-      : null;
+  int? get durationWithSubLine =>
+      endTimeWithSubLine != null && startTimeWithSubLine != null
+          ? endTimeWithSubLine! - startTimeWithSubLine!
+          : null;
 
   @override
   LyricsAlignment lyricsAlignment = LyricsAlignment.unspecified;
@@ -54,8 +56,8 @@ class LineInfo implements ILineInfo {
       return text;
     } else {
       final buffer = StringBuffer();
-      if (subLine!.startTime != null && 
-          startTime != null && 
+      if (subLine!.startTime != null &&
+          startTime != null &&
           subLine!.startTime! < startTime!) {
         buffer.write('(');
         buffer.write(subLine!.text.removeFrontBackBrackets());
@@ -108,30 +110,35 @@ class SyllableLineInfo implements ILineInfo {
 
   String? _text;
   @override
-  String get text => _text ??= SyllableHelper.getTextFromSyllableList(syllables);
+  String get text =>
+      _text ??= SyllableHelper.getTextFromSyllableList(syllables);
 
   int? _startTime;
   @override
-  int? get startTime => _startTime ??= syllables.isNotEmpty ? syllables.first.startTime : null;
+  int? get startTime =>
+      _startTime ??= syllables.isNotEmpty ? syllables.first.startTime : null;
 
   int? _endTime;
   @override
-  int? get endTime => _endTime ??= syllables.isNotEmpty ? syllables.last.endTime : null;
+  int? get endTime =>
+      _endTime ??= syllables.isNotEmpty ? syllables.last.endTime : null;
 
   @override
-  int? get duration => endTime != null && startTime != null ? endTime! - startTime! : null;
+  int? get duration =>
+      endTime != null && startTime != null ? endTime! - startTime! : null;
 
   @override
-  int? get startTimeWithSubLine => MathHelper.min(startTime, subLine?.startTime);
+  int? get startTimeWithSubLine =>
+      MathHelper.min(startTime, subLine?.startTime);
 
   @override
   int? get endTimeWithSubLine => MathHelper.max(endTime, subLine?.endTime);
 
   @override
-  int? get durationWithSubLine => 
-    endTimeWithSubLine != null && startTimeWithSubLine != null 
-      ? endTimeWithSubLine! - startTimeWithSubLine!
-      : null;
+  int? get durationWithSubLine =>
+      endTimeWithSubLine != null && startTimeWithSubLine != null
+          ? endTimeWithSubLine! - startTimeWithSubLine!
+          : null;
 
   @override
   LyricsAlignment lyricsAlignment = LyricsAlignment.unspecified;
@@ -145,8 +152,8 @@ class SyllableLineInfo implements ILineInfo {
       return text;
     } else {
       final buffer = StringBuffer();
-      if (subLine!.startTime != null && 
-          startTime != null && 
+      if (subLine!.startTime != null &&
+          startTime != null &&
           subLine!.startTime! < startTime!) {
         buffer.write('(');
         buffer.write(subLine!.text.removeFrontBackBrackets());
@@ -218,8 +225,9 @@ class FullLineInfo extends LineInfo implements IFullLineInfo {
   Map<String, String> translations = {};
 
   @override
-  String? get chineseTranslation => translations.containsKey('zh') ? translations['zh'] : null;
-  
+  String? get chineseTranslation =>
+      translations.containsKey('zh') ? translations['zh'] : null;
+
   @override
   set chineseTranslation(String? value) {
     if (value == null || value.isEmpty) {
@@ -246,14 +254,15 @@ class FullSyllableLineInfo extends SyllableLineInfo implements IFullLineInfo {
   }
 
   /// 从普通音节行创建完整音节行，可选添加中文翻译和发音指南
-  FullSyllableLineInfo.fromSyllableLineInfoWithExtra(SyllableLineInfo lineInfo, {
+  FullSyllableLineInfo.fromSyllableLineInfoWithExtra(
+    SyllableLineInfo lineInfo, {
     String? chineseTranslation,
     String? pronunciation,
   }) {
     lyricsAlignment = lineInfo.lyricsAlignment;
     subLine = lineInfo.subLine;
     syllables = lineInfo.syllables;
-    
+
     if (chineseTranslation != null && chineseTranslation.isNotEmpty) {
       translations['zh'] = chineseTranslation;
     }
@@ -267,8 +276,9 @@ class FullSyllableLineInfo extends SyllableLineInfo implements IFullLineInfo {
   Map<String, String> translations = {};
 
   @override
-  String? get chineseTranslation => translations.containsKey('zh') ? translations['zh'] : null;
-  
+  String? get chineseTranslation =>
+      translations.containsKey('zh') ? translations['zh'] : null;
+
   @override
   set chineseTranslation(String? value) {
     if (value == null || value.isEmpty) {
@@ -280,4 +290,4 @@ class FullSyllableLineInfo extends SyllableLineInfo implements IFullLineInfo {
 
   @override
   String? pronunciation;
-} 
+}

@@ -1,19 +1,19 @@
 class QqLyricsResponse {
   final String? lyrics;
   final String? trans;
-  
+
   QqLyricsResponse({
     this.lyrics,
     this.trans,
   });
-  
+
   factory QqLyricsResponse.fromJson(Map<String, dynamic> json) {
     return QqLyricsResponse(
       lyrics: json['lyrics'] as String?,
       trans: json['trans'] as String?,
     );
   }
-  
+
   Map<String, dynamic> toJson() {
     return {
       'lyrics': lyrics,
@@ -24,17 +24,17 @@ class QqLyricsResponse {
 
 class Song {
   final String? id;
-  
+
   Song({
     this.id,
   });
-  
+
   factory Song.fromJson(Map<String, dynamic> json) {
     return Song(
       id: json['id'] as String?,
     );
   }
-  
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -45,12 +45,12 @@ class Song {
 class SongResponse {
   final int code;
   final List<Song>? data;
-  
+
   SongResponse({
     this.code = 0,
     this.data,
   });
-  
+
   factory SongResponse.fromJson(Map<String, dynamic> json) {
     return SongResponse(
       code: json['code'] as int? ?? 0,
@@ -59,11 +59,11 @@ class SongResponse {
           .toList(),
     );
   }
-  
+
   Map<String, dynamic> toJson() {
     return {
       'code': code,
       'data': data?.map((e) => e.toJson()).toList(),
     };
   }
-} 
+}

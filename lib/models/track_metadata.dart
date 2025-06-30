@@ -44,7 +44,7 @@ class TrackMultiArtistMetadata implements ITrackMetadata {
 
   @override
   String? get artist => artists.join(', ');
-  
+
   @override
   set artist(String? value) {
     artists = (value ?? '').isEmpty ? [] : (value ?? '').split(', ').toList();
@@ -58,10 +58,11 @@ class TrackMultiArtistMetadata implements ITrackMetadata {
 
   @override
   String? get albumArtist => albumArtists.join(', ');
-  
+
   @override
   set albumArtist(String? value) {
-    albumArtists = (value ?? '').isEmpty ? [] : (value ?? '').split(', ').toList();
+    albumArtists =
+        (value ?? '').isEmpty ? [] : (value ?? '').split(', ').toList();
   }
 
   /// 专辑艺术家列表
@@ -90,7 +91,7 @@ class TrackMultiArtistMetadata implements ITrackMetadata {
     trackMultiArtist.isrc = track.isrc;
     trackMultiArtist.language = track.language;
     trackMultiArtist.title = track.title;
-    
+
     return trackMultiArtist;
   }
 
@@ -115,4 +116,4 @@ class SpotifyTrackMetadata extends TrackMultiArtistMetadata {
 
   /// Spotify音轨URI
   String? get uri => id != null ? "spotify:track:$id" : null;
-} 
+}
