@@ -4,162 +4,58 @@ class Explicit {
   static String clean(String str, {bool strong = false}) {
     if (strong) {
       str = fixExplicit(str)
-          .replaceAll("bitches", "*****")
-          .replaceAll("Bitches", "*****")
-          .replaceAll("bitch", "*****")
-          .replaceAll("Bitch", "*****")
-          .replaceAll("damn", "****")
-          .replaceAll("Damn", "****")
-          .replaceAll("dammit", "******")
-          .replaceAll("Dammit", "******")
-          .replaceAll("dick", "****")
-          .replaceAll("Dick", "****")
-          .replaceAll("dope", "****")
-          .replaceAll("Dope", "****")
-          .replaceAll("fuck", "****")
-          .replaceAll("Fuck", "****")
-          .replaceAll("nigga", "*****")
-          .replaceAll("Nigga", "*****")
-          .replaceAll("nigras", "******")
-          .replaceAll("Nigras", "******")
-          .replaceAll("pussy", "*****")
-          .replaceAll("Pussy", "*****")
-          .replaceAll("sex", "***")
-          .replaceAll("Sex", "***")
-          .replaceAll("shit", "****")
-          .replaceAll("Shit", "****")
-          .replaceAll("weed", "****")
-          .replaceAll("Weed", "****")
-          .replaceAll("whore", "*****")
-          .replaceAll("Whore", "*****")
-          .replaceAll("cocaine", "*******")
-          .replaceAll("Cocaine", "*******")
-          .replaceAll("drug", "****")
-          .replaceAll("Drug", "****");
-      // Fix ass
-      for (int i = 0; i < str.length - 2; i++) {
-        if (str.substring(i, i + 3) == "ass") {
-          if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
-            i += 2;
-            continue;
-          } else if (i + 3 < str.length &&
-              str[i + 3] != ' ' &&
-              str[i + 3] != '-') {
-            i += 2;
-            continue;
-          }
-          str = str.substring(0, i) + "***" + str.substring(i + 3);
-          i += 2;
-        }
-      }
-      // Fix Ass
-      for (int i = 0; i < str.length - 2; i++) {
-        if (str.substring(i, i + 3) == "Ass") {
-          if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
-            i += 2;
-            continue;
-          } else if (i + 3 < str.length &&
-              str[i + 3] != ' ' &&
-              str[i + 3] != '-') {
-            i += 2;
-            continue;
-          }
-          str = str.substring(0, i) + "***" + str.substring(i + 3);
-          i += 2;
-        }
-      }
-      // Fix hoe
-      for (int i = 0; i < str.length - 2; i++) {
-        if (str.substring(i, i + 3) == "hoe") {
-          if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
-            i += 2;
-            continue;
-          } else if (i + 3 < str.length &&
-              str[i + 3] != ' ' &&
-              str[i + 3] != '-') {
-            i += 2;
-            continue;
-          }
-          str = str.substring(0, i) + "***" + str.substring(i + 3);
-          i += 2;
-        }
-      }
+          .replaceAll(RegExp(r'\bbitches\b', caseSensitive: false), "*****")
+          .replaceAll(RegExp(r'\bbitch\b', caseSensitive: false), "*****")
+          .replaceAll(RegExp(r'\bdamn\b', caseSensitive: false), "****")
+          .replaceAll(RegExp(r'\bdammit\b', caseSensitive: false), "******")
+          .replaceAll(RegExp(r'\bdick\b', caseSensitive: false), "****")
+          .replaceAll(RegExp(r'\bdope\b', caseSensitive: false), "****")
+          .replaceAll(RegExp(r'\bfuck\b', caseSensitive: false), "****")
+          .replaceAll(RegExp(r'\bnigga\b', caseSensitive: false), "*****")
+          .replaceAll(RegExp(r'\bnigras\b', caseSensitive: false), "******")
+          .replaceAll(RegExp(r'\bpussy\b', caseSensitive: false), "*****")
+          .replaceAll(RegExp(r'\bsex\b', caseSensitive: false), "***")
+          .replaceAll(RegExp(r'\bshit\b', caseSensitive: false), "****")
+          .replaceAll(RegExp(r'\bweed\b', caseSensitive: false), "****")
+          .replaceAll(RegExp(r'\bwhore\b', caseSensitive: false), "*****")
+          .replaceAll(RegExp(r'\bcocaine\b', caseSensitive: false), "*******")
+          .replaceAll(RegExp(r'\bdrug\b', caseSensitive: false), "****")
+          .replaceAll(RegExp(r'\bass\b', caseSensitive: false), "***")
+          .replaceAll(RegExp(r'\bhoe\b', caseSensitive: false), "***");
     } else {
       str = str
-          .replaceAll("bitch", "b***h")
-          .replaceAll("Bitch", "B***h")
-          .replaceAll("damn", "d**n")
-          .replaceAll("Damn", "D**n")
-          .replaceAll("dammit", "D**mit")
-          .replaceAll("Dammit", "D**mit")
-          .replaceAll("dick", "d**k")
-          .replaceAll("Dick", "D**k")
-          .replaceAll("dope", "d**e")
-          .replaceAll("Dope", "D**e")
-          .replaceAll("fuck", "f**k")
-          .replaceAll("Fuck", "F**k")
-          .replaceAll("nigga", "n***a")
-          .replaceAll("Nigga", "N***a")
-          .replaceAll("nigras", "n***as")
-          .replaceAll("Nigras", "N***as")
-          .replaceAll("pussy", "p***y")
-          .replaceAll("Pussy", "P***y")
-          .replaceAll("sex", "s*x")
-          .replaceAll("Sex", "S*x")
-          .replaceAll("shit", "s**t")
-          .replaceAll("Shit", "S**t")
-          .replaceAll("weed", "w**d")
-          .replaceAll("Weed", "W**d")
-          .replaceAll("whore", "w***e")
-          .replaceAll("Whore", "W***e");
-      // Fix ass
-      for (int i = 0; i < str.length - 2; i++) {
-        if (str.substring(i, i + 3) == "ass") {
-          if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
-            i += 2;
-            continue;
-          } else if (i + 3 < str.length &&
-              str[i + 3] != ' ' &&
-              str[i + 3] != '-') {
-            i += 2;
-            continue;
-          }
-          str = str.substring(0, i) + "a*s" + str.substring(i + 3);
-          i += 2;
-        }
-      }
-      // Fix Ass
-      for (int i = 0; i < str.length - 2; i++) {
-        if (str.substring(i, i + 3) == "Ass") {
-          if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
-            i += 2;
-            continue;
-          } else if (i + 3 < str.length &&
-              str[i + 3] != ' ' &&
-              str[i + 3] != '-') {
-            i += 2;
-            continue;
-          }
-          str = str.substring(0, i) + "A*s" + str.substring(i + 3);
-          i += 2;
-        }
-      }
-      // Fix hoe
-      for (int i = 0; i < str.length - 2; i++) {
-        if (str.substring(i, i + 3) == "hoe") {
-          if (i > 0 && str[i - 1] != ' ' && str[i - 1] != '-') {
-            i += 2;
-            continue;
-          } else if (i + 3 < str.length &&
-              str[i + 3] != ' ' &&
-              str[i + 3] != '-') {
-            i += 2;
-            continue;
-          }
-          str = str.substring(0, i) + "h*e" + str.substring(i + 3);
-          i += 2;
-        }
-      }
+          .replaceAllMapped(RegExp(r'\b(b)it(ch)\b', caseSensitive: false),
+              (m) => '${m[1]}***${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(b)itch(es)\b', caseSensitive: false),
+              (m) => '${m[1]}*****${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(d)am(n)\b', caseSensitive: false),
+              (m) => '${m[1]}**${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(d)ammi(t)\b', caseSensitive: false),
+              (m) => '${m[1]}**${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(d)ic(k)\b', caseSensitive: false),
+              (m) => '${m[1]}**${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(d)o(pe)\b', caseSensitive: false),
+              (m) => '${m[1]}**${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(f)u(ck)\b', caseSensitive: false),
+              (m) => '${m[1]}**${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(n)ig(ga)\b', caseSensitive: false),
+              (m) => '${m[1]}***${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(n)ig(ras)\b', caseSensitive: false),
+              (m) => '${m[1]}***${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(p)us(sy)\b', caseSensitive: false),
+              (m) => '${m[1]}***${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(s)e(x)\b', caseSensitive: false),
+              (m) => '${m[1]}*${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(s)hi(t)\b', caseSensitive: false),
+              (m) => '${m[1]}**${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(w)ee(d)\b', caseSensitive: false),
+              (m) => '${m[1]}**${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(w)ho(re)\b', caseSensitive: false),
+              (m) => '${m[1]}***${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(a)s(s)\b', caseSensitive: false),
+              (m) => '${m[1]}*${m[2]}')
+          .replaceAllMapped(RegExp(r'\b(h)o(e)\b', caseSensitive: false),
+              (m) => '${m[1]}*${m[2]}');
     }
     return str;
   }

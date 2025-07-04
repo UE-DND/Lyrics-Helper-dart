@@ -1,3 +1,0 @@
-class TtmlParser {
-  TtmlParser._();
-}

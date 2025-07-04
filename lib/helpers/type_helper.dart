@@ -11,7 +11,31 @@ class TypeHelper {
   /// <param name="lyrics">歌词字符串</param>
   /// <returns><see cref="LyricsRawTypes"/>, 如果没有识别成功则会返回 <see cref="LyricsRawTypes.unknown"/>.</returns>
   static LyricsRawTypes getLyricsTypes(String lyrics) {
-    // TODO: Implement lyrics type detection
+    final trimmed = lyrics.trim();
+
+    // 粗略判断 YRC：同时包含 "[" 开头及 "(" "," ")" 时间轴
+    final hasBracket = trimmed.contains('[');
+    final hasParenthesisTime = RegExp(r"\(\d+,\d+\)").hasMatch(trimmed);
+    if (hasBracket && hasParenthesisTime) {
+      return LyricsRawTypes.yrc;
+    }
+
+    // Lyricify Syllable (更具体，优先判断)
+    final syllableRegex = RegExp(r'\w+\(\d+,\d+\)');
+    if (syllableRegex.hasMatch(trimmed)) {
+      return LyricsRawTypes.lyricifySyllable;
+    }
+
+    // Lyricify Lines / Syllable
+    if (LyricifyLines.isLyricifyLines(trimmed)) {
+      return LyricsRawTypes.lyricifyLines;
+    }
+
+    // LRC
+    if (Lrc.isLrc(trimmed)) {
+      return LyricsRawTypes.lrc;
+    }
+
     return LyricsRawTypes.unknown;
   }
 
@@ -63,21 +87,9 @@ extension LyricsRawTypesExtension on LyricsRawTypes {
         return LyricsTypes.lyricifyLines;
       case LyricsRawTypes.lrc:
         return LyricsTypes.lrc;
-      case LyricsRawTypes.qrc:
-      case LyricsRawTypes.qrcFull:
-        return LyricsTypes.qrc;
-      case LyricsRawTypes.krc:
-        return LyricsTypes.krc;
       case LyricsRawTypes.yrc:
-      case LyricsRawTypes.yrcFull:
         return LyricsTypes.yrc;
-      case LyricsRawTypes.ttml:
-      case LyricsRawTypes.appleJson:
-        return LyricsTypes.ttml;
-      case LyricsRawTypes.spotify:
-        return LyricsTypes.spotify;
-      case LyricsRawTypes.musixmatch:
-        return LyricsTypes.musixmatch;
+      // 其他类型已移除
     }
   }
 }

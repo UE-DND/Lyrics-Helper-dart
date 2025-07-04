@@ -60,7 +60,7 @@ class LrcParser {
           lines.add(LineInfo.fromTextAndStartTime(
               input
                   .substring(curStateStartPosition + 1,
-                      i - (lastCharacterIsLineBreak ? 1 : 0))
+                      lastCharacterIsLineBreak ? i : i + 1)
                   .trim(),
               curTimestamps[j] - offset));
         }

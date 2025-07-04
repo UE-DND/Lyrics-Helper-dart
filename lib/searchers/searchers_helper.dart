@@ -1,8 +1,5 @@
 import 'i_searcher.dart';
-import 'kugou_searcher.dart';
-import 'musixmatch_searcher.dart';
 import 'netease_searcher.dart';
-import 'qqmusic_searcher.dart';
 import 'searcher_helper.dart';
 import 'searchers.dart';
 
@@ -11,14 +8,9 @@ class SearchersHelper {
   /// 获取枚举的对应类实例
   static ISearcher getSearcher(Searchers searcher) {
     switch (searcher) {
-      case Searchers.qqMusic:
-        return SearcherHelper.qqMusicSearcher;
       case Searchers.netease:
         return SearcherHelper.neteaseSearcher;
-      case Searchers.kugou:
-        return SearcherHelper.kugouSearcher;
-      case Searchers.musixmatch:
-        return SearcherHelper.musixmatchSearcher;
+      // Musixmatch 搜索器已移除
       // 所有枚举情况已覆盖，无需 default
     }
   }
@@ -26,24 +18,17 @@ class SearchersHelper {
   /// 获取枚举的对应类新实例
   static ISearcher getNewSearcher(Searchers searcher) {
     switch (searcher) {
-      case Searchers.qqMusic:
-        return QQMusicSearcher();
       case Searchers.netease:
         return NeteaseSearcher();
-      case Searchers.kugou:
-        return KugouSearcher();
-      case Searchers.musixmatch:
-        return MusixmatchSearcher();
+      // Musixmatch 搜索器已移除
       // 所有枚举情况已覆盖，无需 default
     }
   }
 
   /// 获取搜索类的对应枚举
   static Searchers? getSearchers(ISearcher searcher) {
-    if (searcher is QQMusicSearcher) return Searchers.qqMusic;
     if (searcher is NeteaseSearcher) return Searchers.netease;
-    if (searcher is KugouSearcher) return Searchers.kugou;
-    if (searcher is MusixmatchSearcher) return Searchers.musixmatch;
+    // MusixmatchSearcher 已移除
     return null;
   }
 }

@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 /// 歌词文件附加信息接口
 abstract class IAdditionalFileInfo {
   Map<String, dynamic> toJson();

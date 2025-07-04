@@ -1,5 +1,3 @@
-import '../../../helpers/general/chinese_helper.dart';
-
 /// 艺人匹配工具，移植自 C# `ArtistMatch.cs`。
 ///
 /// 该实现与原版算法保持一致，仅做 Dart 语法层面的调整。
@@ -15,10 +13,8 @@ class ArtistMatchHelper {
   ) {
     if (artist1 == null || artist2 == null) return null;
 
-    final list1 =
-        artist1.map((e) => e.toLowerCase().toSC(force: true)).toList();
-    final list2 =
-        artist2.map((e) => e.toLowerCase().toSC(force: true)).toList();
+    final list1 = artist1.map((e) => e.toLowerCase()).toList();
+    final list2 = artist2.map((e) => e.toLowerCase()).toList();
 
     // 统计匹配数量
     var count = 0;

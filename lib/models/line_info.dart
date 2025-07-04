@@ -239,6 +239,14 @@ class FullLineInfo extends LineInfo implements IFullLineInfo {
 
   @override
   String? pronunciation;
+
+  @override
+  Map<String, dynamic> toJson() {
+    final json = super.toJson();
+    json['translations'] = translations;
+    json['pronunciation'] = pronunciation;
+    return json;
+  }
 }
 
 /// 完整音节行信息类
@@ -290,4 +298,12 @@ class FullSyllableLineInfo extends SyllableLineInfo implements IFullLineInfo {
 
   @override
   String? pronunciation;
+
+  @override
+  Map<String, dynamic> toJson() {
+    final json = super.toJson();
+    json['translations'] = translations;
+    json['pronunciation'] = pronunciation;
+    return json;
+  }
 }
