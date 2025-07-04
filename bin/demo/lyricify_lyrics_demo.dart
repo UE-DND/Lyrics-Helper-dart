@@ -5,17 +5,14 @@ import 'package:lyricify_lyrics_helper/helpers/generator_helper.dart';
 import 'package:lyricify_lyrics_helper/helpers/parse_helper.dart';
 import 'package:lyricify_lyrics_helper/helpers/search_helper.dart';
 import 'package:lyricify_lyrics_helper/helpers/type_helper.dart';
-import 'package:lyricify_lyrics_helper/models/lyrics_data.dart';
 import 'package:lyricify_lyrics_helper/models/lyrics_types.dart';
 import 'package:lyricify_lyrics_helper/models/track_metadata.dart';
 import 'package:lyricify_lyrics_helper/searchers/helpers/compare_helper.dart';
 import 'package:lyricify_lyrics_helper/searchers/searchers.dart' as searchers;
 import 'package:lyricify_lyrics_helper/searchers/netease_search_result.dart';
 
-/// Dart 版本的 Demo，功能与 `sourcecode/Lyricify.Lyrics.Demo/Program.cs` 保持 1:1 对应。
-///
-/// 默认情况下与 C# 一样，仅声明各 Demo 方法但不执行；
-/// 如需体验，将 `main()` 中对应调用解除注释即可。
+/// Dart 版本的 Demo，功能与 `sourcecode/Lyricify.Lyrics.Demo/Program.cs`
+
 void main(List<String> arguments) async {
   await parsersDemo();
   await generatorsDemo();
@@ -25,49 +22,60 @@ void main(List<String> arguments) async {
 
 /// 解析示例：演示 ParseHelper 对多个原始歌词的解析能力。
 Future<void> parsersDemo() async {
-  final cases = <String, LyricsRawTypes>{
-    'bin/demo/RawLyrics/LyricifySyllableDemo.txt':
-        LyricsRawTypes.lyricifySyllable,
-    'bin/demo/RawLyrics/LsMixQrcDemo.txt': LyricsRawTypes.lyricifySyllable,
-    'bin/demo/RawLyrics/LyricifyLinesDemo.txt': LyricsRawTypes.lyricifyLines,
-    'bin/demo/RawLyrics/LrcDemo.txt': LyricsRawTypes.lrc,
-    'bin/demo/RawLyrics/QrcDemo.txt': LyricsRawTypes.qrc,
-    'bin/demo/RawLyrics/KrcDemo.txt': LyricsRawTypes.krc,
-    'bin/demo/RawLyrics/YrcDemo.txt': LyricsRawTypes.yrc,
-    'bin/demo/RawLyrics/SpotifyDemo.txt': LyricsRawTypes.spotify,
-    'bin/demo/RawLyrics/SpotifySyllableDemo.txt': LyricsRawTypes.spotify,
-    'bin/demo/RawLyrics/SpotifyUnsyncedDemo.txt': LyricsRawTypes.spotify,
-    'bin/demo/RawLyrics/MusixmatchDemo.txt': LyricsRawTypes.musixmatch,
-  };
+  const path = 'bin/demo/RawLyrics/YrcDemo.txt';
+  final content = File(path).readAsStringSync();
+  final data = ParseHelper.parseLyrics(content, LyricsRawTypes.yrc);
 
-  for (final entry in cases.entries) {
-    final path = entry.key;
-    final type = entry.value;
-    final content = File(path).readAsStringSync();
-    final LyricsData? data = ParseHelper.parseLyrics(content, type);
+  final pretty = const JsonEncoder.withIndent('  ').convert(data);
+  stdout
+    ..writeln('===== $path (YRC) =====')
+    ..writeln(pretty)
+    ..writeln();
 
-    // pretty-print，若模型未实现 toJson 则用对象字符串兜底。
-    final pretty = const JsonEncoder.withIndent('  ').convert(data);
-    stdout
-      ..writeln('===== $path ($type) =====')
-      ..writeln(pretty)
-      ..writeln();
-  }
+  // === LRC 示例 ===
+  const lrcPath = 'bin/demo/RawLyrics/LrcDemo.txt';
+  final lrcContent = File(lrcPath).readAsStringSync();
+  final lrcData = ParseHelper.parseLyrics(lrcContent); // 自动识别为 LRC
+
+  final lrcPretty = const JsonEncoder.withIndent('  ').convert(lrcData);
+  stdout
+    ..writeln('===== $lrcPath (LRC) =====')
+    ..writeln(lrcPretty)
+    ..writeln();
+
+  // === Lyricify Lines 示例 ===
+  const linesPath = 'bin/demo/RawLyrics/LyricifyLinesDemo.txt';
+  final linesContent = File(linesPath).readAsStringSync();
+  final linesData = ParseHelper.parseLyrics(linesContent);
+
+  final linesPretty = const JsonEncoder.withIndent('  ').convert(linesData);
+  stdout
+    ..writeln('===== $linesPath (Lyricify Lines) =====')
+    ..writeln(linesPretty)
+    ..writeln();
+
+  // === Lyricify Syllable 示例 ===
+  const syllablePath = 'bin/demo/RawLyrics/LyricifySyllableDemo.txt';
+  final syllableContent = File(syllablePath).readAsStringSync();
+  final syllableData = ParseHelper.parseLyrics(syllableContent);
+
+  final syllablePretty =
+      const JsonEncoder.withIndent('  ').convert(syllableData);
+  stdout
+    ..writeln('===== $syllablePath (Lyricify Syllable) =====')
+    ..writeln(syllablePretty)
+    ..writeln();
 }
 
 /// 生成示例：演示 GenerateHelper 将解析结果转换为不同歌词格式。
 Future<void> generatorsDemo() async {
-  const src = 'bin/demo/RawLyrics/LyricifySyllableDemo.txt';
+  const src = 'bin/demo/RawLyrics/YrcDemo.txt';
   final content = File(src).readAsStringSync();
-  final lyricsData =
-      ParseHelper.parseLyrics(content, LyricsRawTypes.lyricifySyllable)!;
+  final lyricsData = ParseHelper.parseLyrics(content, LyricsRawTypes.yrc)!;
 
   final targets = <LyricsTypes>[
-    LyricsTypes.lyricifySyllable,
-    LyricsTypes.lyricifyLines,
     LyricsTypes.lrc,
-    LyricsTypes.qrc,
-    LyricsTypes.krc,
+    LyricsTypes.lyricifyLines,
     LyricsTypes.yrc,
   ];
 
@@ -82,11 +90,9 @@ Future<void> generatorsDemo() async {
 
 /// 类型检测示例：展示 TypeHelper 的判别结果。
 void typeDetectorDemo() {
-  final lrc = File('bin/demo/RawLyrics/LrcDemo.txt').readAsStringSync();
-  final qrc = File('bin/demo/RawLyrics/QrcDemo.txt').readAsStringSync();
+  final yrc = File('bin/demo/RawLyrics/YrcDemo.txt').readAsStringSync();
 
-  stdout.writeln('Is LRC? ${TypeHelper.isLyricsType(lrc, LyricsTypes.lrc)}');
-  stdout.writeln('Is LRC? ${TypeHelper.isLyricsType(qrc, LyricsTypes.lrc)}');
+  stdout.writeln('Is YRC? ${TypeHelper.isLyricsType(yrc, LyricsTypes.yrc)}');
 }
 
 /// 搜索示例：调用网络搜索并比较匹配度。

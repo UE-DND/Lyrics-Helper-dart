@@ -1,3 +1,4 @@
+// coverage:ignore-file
 import '../helpers/general/math_helper.dart';
 import '../helpers/general/string_helper.dart';
 

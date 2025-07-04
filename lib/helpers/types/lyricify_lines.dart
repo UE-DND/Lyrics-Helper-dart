@@ -5,8 +5,11 @@ class LyricifyLines {
     if (input == null) return false;
 
     if (input.contains("[type:LyricifyLines]")) return true;
+    if (input.contains("[type:LyricifySyllable]"))
+      return false; // Explicitly not lines
 
-    final regex = RegExp(r'^\[\d+,\d+\].*');
+    // Matches {0,1} or [0,1] at the start
+    final regex = RegExp(r'^[\[\{]\d+,\d+[\]\}].*');
     final matches = regex.allMatches(input);
     if (matches.isNotEmpty) {
       final syllableRegex = RegExp(r'\w+\(\d+,\d+\)');

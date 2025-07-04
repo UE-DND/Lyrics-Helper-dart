@@ -3,7 +3,7 @@
 .packages
 .pub/
 build/
-coverage/
+coverage*/
 
 # Generated files
 lib/generated_plugin_registrant.dart

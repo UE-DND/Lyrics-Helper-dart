@@ -1,71 +1,69 @@
-# Lyricify Lyrics Helper (Dart Port)
+# Lyricify Lyrics Helper – Dart (Slimmed Edition)
 
 > **English / [简体中文](README_zh.md)**
 
-## Overview
-This repository is a **pure-Dart** migration of the original C# project "Lyricify Lyrics Helper".
-It offers the same feature set – lyric parsing / generation / optimisation, online search and decryption –
-but can be consumed on every platform supported by Dart & Flutter.
+A pure-Dart port of the original [Lyricify Lyrics Helper](https://github.com/WXRIW/Lyricify-Lyrics-Helper), now slimmed down for mobile-app scenarios: it focuses on **Netease Cloud Music lyric search, download and parsing**.
 
-This repository now hosts the Dart implementation only. (The original C# repo lives separately; see below.)
+## Feature Matrix
 
 | Module | Status |
 |--------|--------|
-| Parsers / Generators | ✅ Feature-parity with C# |
-| Searchers (Netease, Kugou, QQMusic, Musixmatch) | ✅ Working |
-| Spotify support | ⚠️ Not yet ported |
-| Optimisers (Explicit, YRC, Musixmatch) | ✅ Working |
-| Decrypters (QRC, KRC) | ✅ Working |
+| Parsers / Generators | ✅ Lyricify Syllable & Lines, LRC, YRC |
+| Optimisers | ✅ Explicit filter, YRC tidy-up |
+| Online Search & Retrieval | ✅ Netease Cloud Music |
+| Unified API | ✅ `LyricsHelper.fetchLyricsFull()` |
 
-## Repositories
-| Project | Description | URL |
-|---------|-------------|-----|
-| Dart Port | This repository (actively maintained) | https://github.com/UE-DND/Lyrics-Helper-dart |
-| C# Original | Up-stream implementation in C# | https://github.com/WXRIW/Lyricify-Lyrics-Helper |
+> ⚠️  Code for QQMusic, Kugou, Musixmatch, KRC/QRC decryption etc. has been removed in this edition.
 
-## Getting Started
+## Quick Start
+
 ```bash
-# Clone
+# Clone repository
 $ git clone https://github.com/UE-DND/Lyrics-Helper-dart.git
 $ cd Lyrics-Helper-dart
 
 # Fetch packages
-$ dart pub get  # or: flutter pub get
-
-# Run the demo (parsing / generating / searching)
-$ dart run bin/demo/lyricify_lyrics_demo.dart
+$ dart pub get       # or: flutter pub get
 ```
 
 ### Use as a dependency
+
 ```yaml
-# pubspec.yaml of your project
+# pubspec.yaml
 dependencies:
   lyricify_lyrics_helper:
     git:
       url: https://github.com/UE-DND/Lyrics-Helper-dart
 ```
-Then import the modules you need:
-```dart
-import 'package:lyricify_lyrics_helper/helpers/parse_helper.dart';
-import 'package:lyricify_lyrics_helper/models/lyrics_types.dart';
 
-final data = ParseHelper.parseLyrics(rawText, LyricsRawTypes.lrc);
+Example:
+
+```dart
+import 'package:lyricify_lyrics_helper/lyrics_helper.dart';
+final result = await LyricsHelper.fetchLyricsFull(
+  TrackMetadata()
+    ..title = 'Shape of You'
+    ..artist = 'Ed Sheeran',
+);
+if (result.status == FetchStatus.success) {
+  print(result.lyricsData);
+}
 ```
 
 ## Directory Layout (simplified)
 ```
-lib/                 – Core library code
-bin/                 – Command-line demo & utilities
-test/                – Tests (if any)
-.github/             – CI
-README*.md           – Documentation
+lib/
+├─ helpers/          – Tooling & optimisers
+├─ parsers/          – Lyric parsers
+├─ providers/        – Netease API wrapper
+├─ searchers/        – Netease searcher
+└─ lyrics_helper.dart – Unified public API
 ```
 
 ## License
-Same license as upstream project. See `LICENSE` for details.
+Same license as the upstream project – see `LICENSE`.
 
 ## Acknowledgements
-* [Lyricify Lyrics Helper (C#)](https://github.com/WXRIW/Lyricify-Lyrics-Helper) – the original codebase this port is based on.
-* [LyricParser](https://github.com/HyPlayer/LyricParser) (MIT)
-* [163MusicLyrics](https://github.com/jitwxs/163MusicLyrics) (Apache-2.0)
-* And everyone who contributed to both versions of the project.
+* [Lyricify Lyrics Helper (C#)](https://github.com/WXRIW/Lyricify-Lyrics-Helper)
+* [LyricParser](https://github.com/HyPlayer/LyricParser)
+* [163MusicLyrics](https://github.com/jitwxs/163MusicLyrics)

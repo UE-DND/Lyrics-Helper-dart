@@ -153,7 +153,7 @@ class YrcParser {
               }
             }
           }
-          state = _CurrentState.none;
+          state = _CurrentState.lyric;
           timeSpanBuilder = 0;
           continue;
         case '(':
@@ -184,6 +184,10 @@ class YrcParser {
                 break;
               }
             }
+          }
+          if (state == _CurrentState.wordDuration) {
+            wordDuration = timeSpanBuilder;
+            timeSpanBuilder = 0;
           }
           state = _CurrentState.lyric;
           continue;

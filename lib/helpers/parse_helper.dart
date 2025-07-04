@@ -1,12 +1,8 @@
 import '../models/lyrics_data.dart';
 import '../models/lyrics_types.dart';
-import '../parsers/krc_parser.dart';
 import '../parsers/lrc_parser.dart';
 import '../parsers/lyricify_lines_parser.dart';
 import '../parsers/lyricify_syllable_parser.dart';
-import '../parsers/musixmatch_parser.dart';
-import '../parsers/qrc_parser.dart';
-import '../parsers/spotify_parser.dart';
 import '../parsers/yrc_parser.dart';
 import 'type_helper.dart';
 
@@ -44,16 +40,8 @@ class ParseHelper {
         return LyricifyLinesParser.parse(lyrics);
       case LyricsRawTypes.lrc:
         return LrcParser.parse(lyrics);
-      case LyricsRawTypes.qrc:
-        return QrcParser.parse(lyrics);
-      case LyricsRawTypes.krc:
-        return KrcParser.parse(lyrics);
       case LyricsRawTypes.yrc:
         return YrcParser.parse(lyrics);
-      case LyricsRawTypes.spotify:
-        return SpotifyParser.parse(lyrics);
-      case LyricsRawTypes.musixmatch:
-        return MusixmatchParser.parse(lyrics);
       default:
         return null;
     }

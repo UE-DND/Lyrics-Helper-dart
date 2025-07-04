@@ -1,44 +1,84 @@
-import 'package:test/test.dart';
 import 'package:lyricify_lyrics_helper/helpers/general/math_helper.dart';
+import 'package:test/test.dart';
 
 void main() {
-  group('最值函数', () {
-    test('min', () {
-      expect(MathHelper.min(1, 3), 1);
-      expect(MathHelper.min(null, 2), 2);
-      expect(MathHelper.min(5, null), 5);
+  group('MathHelper', () {
+    test('min returns the minimum of two integers', () {
+      expect(MathHelper.min(1, 2), 1);
+      expect(MathHelper.min(2, 1), 1);
+      expect(MathHelper.min(null, 1), 1);
+      expect(MathHelper.min(1, null), 1);
+      expect(MathHelper.min(null, null), isNull);
     });
 
-    test('max', () {
-      expect(MathHelper.max(1, 3), 3);
-      expect(MathHelper.max(null, 2), 2);
-      expect(MathHelper.max(5, null), 5);
+    test('max returns the maximum of two integers', () {
+      expect(MathHelper.max(1, 2), 2);
+      expect(MathHelper.max(2, 1), 2);
+      expect(MathHelper.max(null, 1), 1);
+      expect(MathHelper.max(1, null), 1);
+      expect(MathHelper.max(null, null), isNull);
     });
-  });
 
-  group('阈值函数', () {
-    test('greaterThanZero', () {
+    test('greaterThanZero returns correct values', () {
+      expect(MathHelper.greaterThanZero(5), 5);
+      expect(MathHelper.greaterThanZero(0), 0);
       expect(MathHelper.greaterThanZero(-5), 0);
-      expect(MathHelper.greaterThanZero(7), 7);
     });
 
-    test('greaterThan', () {
-      expect(MathHelper.greaterThan(5, 10), 10);
-      expect(MathHelper.greaterThan(15, 10), 15);
+    test('greaterThanZeroDouble returns correct values', () {
+      expect(MathHelper.greaterThanZeroDouble(5.5), 5.5);
+      expect(MathHelper.greaterThanZeroDouble(0.0), 0.0);
+      expect(MathHelper.greaterThanZeroDouble(-5.5), 0.0);
     });
 
-    test('greaterThanZeroDouble / greaterThanDouble', () {
-      expect(MathHelper.greaterThanZeroDouble(-5.5), 0);
-      expect(MathHelper.greaterThanZeroDouble(3.3), 3.3);
-      expect(MathHelper.greaterThanDouble(1.1, 2.2), 2.2);
+    test('greaterThan returns correct values', () {
+      expect(MathHelper.greaterThan(10, 5), 10);
+      expect(MathHelper.greaterThan(5, 5), 5);
+      expect(MathHelper.greaterThan(0, 5), 5);
+    });
+
+    test('greaterThanDouble returns correct values', () {
+      expect(MathHelper.greaterThanDouble(10.5, 5.5), 10.5);
+      expect(MathHelper.greaterThanDouble(5.5, 5.5), 5.5);
+      expect(MathHelper.greaterThanDouble(0.5, 5.5), 5.5);
+    });
+
+    test('swap exchanges elements in a list', () {
+      final list = [1, 2, 3];
+      MathHelper.swap(list, 0, 2);
+      expect(list, [3, 2, 1]);
     });
   });
 
-  group('swap', () {
-    test('交换列表元素', () {
-      final list = ['a', 'b', 'c'];
-      MathHelper.swap(list, 0, 2);
-      expect(list, ['c', 'b', 'a']);
+  group('IntExtensions', () {
+    test('isBetween works correctly', () {
+      expect(5.isBetween(0, 10), isTrue);
+      expect(0.isBetween(0, 10), isTrue);
+      expect(10.isBetween(0, 10), isTrue);
+      expect(11.isBetween(0, 10), isFalse);
+      expect(5.isBetween(10, 0), isTrue);
+    });
+
+    test('isBetween without edge works correctly', () {
+      expect(5.isBetween(0, 10, containEdge: false), isTrue);
+      expect(0.isBetween(0, 10, containEdge: false), isFalse);
+      expect(10.isBetween(0, 10, containEdge: false), isFalse);
+    });
+  });
+
+  group('DoubleExtensions', () {
+    test('isBetween works correctly', () {
+      expect(5.5.isBetween(0.0, 10.0), isTrue);
+      expect(0.0.isBetween(0.0, 10.0), isTrue);
+      expect(10.0.isBetween(0.0, 10.0), isTrue);
+      expect(11.1.isBetween(0.0, 10.0), isFalse);
+      expect(5.5.isBetween(10.0, 0.0), isTrue);
+    });
+
+    test('isBetween without edge works correctly', () {
+      expect(5.5.isBetween(0.0, 10.0, containEdge: false), isTrue);
+      expect(0.0.isBetween(0.0, 10.0, containEdge: false), isFalse);
+      expect(10.0.isBetween(0.0, 10.0, containEdge: false), isFalse);
     });
   });
 }

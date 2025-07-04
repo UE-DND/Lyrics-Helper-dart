@@ -106,7 +106,7 @@ class LyricifySyllableParser {
     var matches = RegExp(r"(.*?)\((\d+),(\d+)\)").allMatches(line);
     for (var match in matches) {
       if (match.groupCount == 3) {
-        String text = match.group(1)!;
+        String text = match.group(1)!.trim();
         int startTime = int.parse(match.group(2)!);
         int duration = int.parse(match.group(3)!);
         int endTime = startTime + duration;

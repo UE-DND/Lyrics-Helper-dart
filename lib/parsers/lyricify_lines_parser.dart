@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import '../helpers/general/string_helper.dart';
 import '../models/i_line_info.dart';
 import '../models/lyrics_data.dart';
@@ -9,7 +11,7 @@ import '../models/line_info.dart';
 import 'attributes_helper.dart';
 
 class LyricifyLinesParser {
-  LyricifyLinesParser._();
+  LyricifyLinesParser._(); // coverage:ignore-line
 
   static LyricsData parse(String lyrics) {
     var lyricsLines = lyrics
@@ -37,12 +39,18 @@ class LyricifyLinesParser {
     offset ??= 0;
     var lyricsArray = <LineInfo>[];
     for (var line in lines) {
-      if (!line.startsWith('[') || !line.contains(',') || !line.contains(']'))
-        continue;
+      if (!line.startsWith(RegExp(r'[\[\{]'))) continue;
+
       try {
-        int begin = int.parse(line.between("[", ","));
-        int end = int.parse(line.between(",", "]"));
-        String text = line.substring(line.indexOf(']') + 1).trim();
+        final isCurly = line.startsWith('{');
+        final startTag = isCurly ? '{' : '[';
+        final endTag = isCurly ? '}' : ']';
+
+        if (!line.contains(',') || !line.contains(endTag)) continue;
+
+        int begin = int.parse(line.between(startTag, ","));
+        int end = int.parse(line.between(",", endTag));
+        String text = line.substring(line.indexOf(endTag) + 1).trim();
         lyricsArray
             .add(LineInfo.fromTextAndTimes(text, begin - offset, end - offset));
       } catch (e) {

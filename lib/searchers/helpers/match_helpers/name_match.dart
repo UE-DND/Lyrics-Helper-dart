@@ -1,4 +1,3 @@
-import '../../../helpers/general/chinese_helper.dart';
 import '../../../helpers/general/string_helper.dart';
 
 /// 名称匹配工具，移植自 C# `NameMatch.cs`。
@@ -7,8 +6,8 @@ class NameMatchHelper {
   static NameMatchType? compareName(String? name1, String? name2) {
     if (name1 == null || name2 == null) return null;
 
-    name1 = name1.toSC(force: true).toLowerCase().trim();
-    name2 = name2.toSC(force: true).toLowerCase().trim();
+    name1 = name1.toLowerCase().trim();
+    name2 = name2.toLowerCase().trim();
 
     if (name1 == name2) return NameMatchType.perfect;
 

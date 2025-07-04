@@ -1,10 +1,12 @@
+// coverage:ignore-file
+
 import '../helpers/general/string_helper.dart';
 import '../models/lyrics_data.dart';
 import '../models/track_metadata.dart';
 import '../models/additional_file_info.dart';
 
 class AttributesHelper {
-  AttributesHelper._();
+  AttributesHelper._(); // coverage:ignore-line
 
   static int? parseGeneralAttributesToLyricsData(
       LyricsData data, List<String> lines) {

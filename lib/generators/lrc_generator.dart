@@ -79,7 +79,8 @@ class LrcGenerator {
     final minutes = (timeMs / 60000).floor();
     final seconds = ((timeMs % 60000) / 1000).floor();
     final milliseconds = (timeMs % 1000 / 10).floor();
-    return '$minutes:${seconds.toString().padLeft(2, '0')}.${milliseconds.toString().padLeft(2, '0')}';
+    // 统一格式：分钟始终两位补零，例如 "00:01.23"。
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}.${milliseconds.toString().padLeft(2, '0')}';
   }
 }
 
